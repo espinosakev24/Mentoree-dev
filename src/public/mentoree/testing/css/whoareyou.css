@@ -1,0 +1,38 @@
+h1 {
+    margin-bottom: 3%;
+    color: #2F80ED;
+    font-weight: bold;
+    font-family: Nunito;
+    font-size: 80px;
+}
+.teach-img {
+    width: 40%;
+    height: auto;   
+}
+.btns {
+    margin-top: 2.5%;
+    width: 100%;
+}
+button {
+    text-transform: none;
+    background-color: #2F80ED;
+    color: white;
+    font-size: 20px;
+    height: 3em;
+    width: 30%;
+    transition: transform .2s;
+    border-radius: 30px;
+}
+button:hover {
+    color: white;
+    opacity: 90%;
+    transform: scale(1.1);
+}
+.btn-left {
+    margin-left: 5%;
+    float: left;
+}
+.btn-right {
+    margin-right: 5%;
+    float: right;
+}
