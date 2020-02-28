@@ -1,8 +1,9 @@
+//exporting database object with credentials about mentoree_db
 module.exports = {
     database: {
         host: 'localhost',
-        user: 'doom_dev',
-        password: 'mfdoom',
-        database: 'database_links'
+        user: 'mentoree_dev',
+        password: 'fikeca',
+        database: 'mentoree_db'
     }
 };

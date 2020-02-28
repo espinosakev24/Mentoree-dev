@@ -2,8 +2,10 @@ const mysql = require('mysql');
 const { promisify } = require('util');
 const { database } = require('./keys');
 
+//Create a pool in database for queries and also handles errors
 const pool = mysql.createPool(database);
 
+//Error handlers
 pool.getConnection((err, connection) => {
   if (err) {
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -17,12 +19,15 @@ pool.getConnection((err, connection) => {
     }
   }
 
+  //If DB is connected then release and start connection...
   if (connection) connection.release();
-  console.log('DB is Connected');
+    console.log('DB is Connected');
 
   return;
 });
 
 //Each time I want to query something, I can use a promise
+//Why a promise? Each query takes time, and there must be a promise
+//that the query will be found and executed
 pool.query = promisify(pool.query);
 module.exports = pool;
