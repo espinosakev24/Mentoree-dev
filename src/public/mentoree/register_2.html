@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - 2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/normalize.css">
+    <link rel="stylesheet" href="static/register_css/register_2.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+</head>
+<body>
+  <header class="container">
+        <div class="subcontainer">
+            <div class="header">
+                <div class="header-img">
+                    <img src="images/logo.png" alt="">
+                    <div>&nbsp;</div>
+                    <h1>mentoree</h1>
+                </div>
+              <h2>Personal Info.</h1>
+            </div>
+
+            <div class="forms">
+                <div class="row-block">
+                    <div class="form-block">
+                        <h2>Education</h2>
+                        <input type="text" name="" id="" placeholder="French Horn in Universidad de Antioquia">
+                    </div>
+                    <div class="form-block">
+                        <h2>Methodology | help</h2>
+                            <select class="options" name="states[]">
+                                <option value="Methodology 1">Expeditionary Learning...</option>
+                                <option value="Methodology 1">Methodology 1</option>
+                                <option value="Methodology 2">Methodology 2</option>
+                                <option value="Methodology 3">Methodology 3</option>
+                                <option value="Methodology 4">Methodology 4</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row-block description">
+                    <div class="form-block">
+                        <h2>Biography</h2>
+                        <textarea type="text" name="" id="" placeholder="Present yourself!"  class="description"></textarea>
+                    </div>
+                    <div class="form-block">
+                        <h2>Fields</h2>
+                        <select type="text" placeholder="Expeditionary Learning..." class="js-example-basic-multiple options" multiple="multiple">
+                            <option value="field 1">Music Theory</option>
+                            <option value="field 2">Biology</option>
+                            <option value="field 3">Math</option>
+                            <option value="field 4">Other</option>
+                        </select>
+                        <br>
+                        <div class="endtext">
+                            Please write and select a filed...
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block">
+                    <div class="pagination">
+                        <p>2/2</p>
+                        <div class="btns">
+                            <button>Cancel</button> <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <button>Complete!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+      </div>
+  </header>
+
+  <script>
+      $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({placeholder: 'Example: Math'});
+        });
+  </script>
+</body>
+
+</html>
