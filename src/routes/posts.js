@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const pool = require('../database');
 
+
 router.route('/')
   // GET request - localhost:4000/api/posts/
   .get(async (req, res) => {
