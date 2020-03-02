@@ -1,0 +1,32 @@
+html {
+	scroll-behavior: smooth;
+}
+.header-cont {
+	margin-bottom: 2%;
+}
+.container {
+	margin-top: 3%;
+	max-width: 85%;
+	text-align: center;
+	vertical-align: middle;
+}
+.row {
+	font-family: 'Nunito';
+	font-size: 20px;
+	color: #2F80ED;
+	font-style: normal;
+	font-weight: normal;
+}
+img.logo {
+	width: 13%;
+	height: auto;
+	vertical-align: middle;
+}
+.logo-text {
+	font-size: 30px;
+	font-weight: bold;
+	vertical-align: middle;
+}
+.nav {
+	line-height: 49px;
+}

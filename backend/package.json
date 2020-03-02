@@ -1,0 +1,35 @@
+{
+  "name": "mentoree-dev",
+  "version": "1.0.0",
+  "description": "Development environment for Mentoree web app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/espinosakev24/Mentoree-dev.git"
+  },
+  "author": "Fidel Caicedo, Kevin Espinosa, Camilo Villegas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/espinosakev24/Mentoree-dev/issues"
+  },
+  "homepage": "https://github.com/espinosakev24/Mentoree-dev#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-mysql-session": "^2.1.3",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "timeago.js": "^4.0.2"
+  }
+}
