@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const router = Router();
 const pool = require('../database');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 
 router.route('/')

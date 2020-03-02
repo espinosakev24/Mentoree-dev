@@ -1,15 +1,22 @@
 import React from 'react';
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
-import Students from "./Api_tests/getUsers";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Navigation from './components/navigation'
+import Students from "./Api_tests/getUsers";
+import landing from "./components/landing";
+//import signIn from "./components/signIn";
+import signUpStudent from "./components/signUpStudent";
+//import signUpTeacher from "./components/signUpTeacher";
+//import lobby from "./components/lobby";
+
 
 function App() {
   return (
-    <div>
-      <Navigation />
-      <Students/>
-    </div>
+    <Router>
+      <Route exact path='/' component={ landing } />
+      <Route path='/signUpStudent' component={ signUpStudent } />
+    </Router>
   );
 }
 
