@@ -70,6 +70,7 @@ p { color: #2F80ED; }
     border-radius: 20px;
     color: #2F80ED;
     font-size: small;
+    outline: none;
 }
 .btns > button:hover{
     color: white;
