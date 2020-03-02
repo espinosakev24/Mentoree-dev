@@ -2,8 +2,24 @@ const { Router } = require('express');
 const router = Router();
 const pool = require('../database');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
+
+router.route('/test')
+  .get(async (req, res) => {
+    const result = await pool.query('SELECT email FROM students');
+
+    for (let i = 0; i < result.length; i++) {
+      if (result[i].email === "mrdoom.official@gmail.com") {
+        console.log("It works");
+      }
+    }
+
+    res.json({
+      message: 'TEST!',
+      result
+    });
+  });
 
 router.route('/')
   // GET request - localhost:4000/api/students/
@@ -18,6 +34,18 @@ router.route('/')
 
   // POST request - localhost:4000/api/students/
   .post(async (req, res) => {
+    const newStudent = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      contact: req.body.contact,
+      password: req.body.password,
+      location: req.body.location,
+      age: req.body.age,
+      email: req.body,email,
+      education: req.body.education
+    }
+
+    if (newStudent.email in pool.query)
     await pool.query('INSERT INTO students set ?', [req.body]);
 
     res.json({
