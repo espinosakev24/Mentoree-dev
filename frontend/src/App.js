@@ -10,6 +10,7 @@ import signUpStudent from "./components/signUpStudent";
 //import signUpTeacher from "./components/signUpTeacher";
 import Lobby from "./components/lobby";
 import AboutUs from "./components/aboutUs";
+import Posts from "./Api_tests/getPosts";
 
 
 function App() {
@@ -27,6 +28,10 @@ function App() {
       <Link to='/testingStudents'>
         <h3> GO TO STUDENTS API TESTS</h3>
       </Link>
+      <Link to='/testingPost'>
+        <h3> GO TO POST API TESTS</h3>
+      </Link>
+
 
       <switch>
         <Route exact path='/' component={ landing } />
@@ -34,6 +39,7 @@ function App() {
         <Route path="/about" component={ AboutUs }/>
         <Route path="/lobby" component={ Lobby }/>
         <Route path="/testingStudents"  component={ Students }/>
+        <Route path="/testingPost" component={ Posts}/>
       </switch>
     </Router>
   );

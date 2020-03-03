@@ -8,8 +8,10 @@ export default class Posts extends Component {
       results: [],
       id: {value: 0}
     };
-    this.handleChange = this.handleChange.bind(this);
+   /* this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    */
   }
 
   getPostsById = () => {
@@ -30,13 +32,14 @@ export default class Posts extends Component {
       <div>
         <button onClick={this.getAllPosts}>Get all Post</button>
         {this.state.results.map(post => (
-          <p>The title of the post is {post.data}
-          The one posting it is  {post.student_name}
-          the id of the student is {post.student_id}
-          The date is {post.date}
-          the field is {post.field}
-          the payment is {post.payment}
-          the place is {post.place}</p>
+          <p><h1>The title of the post is {post.title}</h1><br />
+          <b>The id of the Student is {post.student_id}</b><br />
+          the id of the Teacher is {post.teacher_id}<br />
+          The creation date is {post.creation_date}<br />
+          the schedule is {post.schedule}<br />
+          the price is {post.price}<br />
+          the size of people is {post.size}<br />
+          the place is {post.location}</p>
         ))}
       </div>
     )
