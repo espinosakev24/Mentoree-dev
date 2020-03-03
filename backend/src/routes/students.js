@@ -4,7 +4,10 @@ const pool = require('../database');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+const Student = require('../models/studentsMod');
 
+process.env.SECRET_KEY = 'secret';
+/*
 router.route('/test')
   .get(async (req, res) => {
     const result = await pool.query('SELECT email FROM students');
@@ -20,6 +23,7 @@ router.route('/test')
       result
     });
   });
+*/
 
 router.route('/')
   // GET request - localhost:4000/api/students/
@@ -34,7 +38,7 @@ router.route('/')
 
   // POST request - localhost:4000/api/students/
   .post(async (req, res) => {
-    const newStudent = {
+    /*const newStudent = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       contact: req.body.contact,
@@ -45,7 +49,23 @@ router.route('/')
       education: req.body.education
     }
 
-    if (newStudent.email in pool.query)
+    Student.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+    .then(student => {
+      if(!student) {
+        bcrypt.hash(req.password, 10, (err, hash) => {
+          newStudent.password = hash;
+          Student.create(UserData)
+          .then(user => {
+            res.json()
+          })
+        })
+      }
+    })
+  */
     await pool.query('INSERT INTO students set ?', [req.body]);
 
     res.json({

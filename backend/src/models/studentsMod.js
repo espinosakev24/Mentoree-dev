@@ -6,10 +6,17 @@ module.exports = db.sequelize.define(
     'students',
     {
         student_id: {
-
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+            allowNull: false
         },
         post_id: {
-
+            type: Sequelize.INTEGER,
+            references: {
+                model: posts,
+                key: 'post_id'
+            }
         },
         first_name: {
             type: Sequelize.STRING,
@@ -43,5 +50,8 @@ module.exports = db.sequelize.define(
             type: Sequelize.STRING,
             allowNull: false
         }
+    },
+    {
+        timestamps: false
     }
 );
