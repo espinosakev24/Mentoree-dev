@@ -14,7 +14,7 @@ module.exports = db.sequelize.define(
         post_id: {
             type: Sequelize.INTEGER,
             references: {
-                model: posts,
+                model: 'posts',
                 key: 'post_id'
             }
         },
