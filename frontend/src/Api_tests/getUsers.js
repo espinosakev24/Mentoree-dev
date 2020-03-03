@@ -11,6 +11,13 @@ export default class Students extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+  handleSubmit(event) {
+    alert('Something has being submitted: ' + this.state.value)
+    event.preventDefault();
+  }
   getStudentById = () =>{
     axios.get('').then()
   }
