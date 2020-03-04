@@ -13,7 +13,7 @@ export const registerStudent = newStudent => {
         education: newStudent.education
     })
     .then(res => {
-        console.log("Student: " + newStudent.email + "registered!")
+        console.log("Student: " + newStudent.email + " registered!")
     })
 }
 
@@ -50,7 +50,7 @@ export const registerTeacher = newTeacher => {
         reviews: newTeacher.reviews
     })
     .then(res => {
-        console.log("Teacher: " + teacher.email + "registered!")
+        console.log("Teacher: " + newTeacher.email + "registered!")
     })
 }
 

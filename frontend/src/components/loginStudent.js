@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { loginStudent } from './registerLogin'
 
-export default class loginStudent extends Component {
+export default class LoginStudent extends Component {
     constructor() {
         super()
         this.state = {
@@ -25,10 +25,8 @@ export default class loginStudent extends Component {
             password: this.state.password
         }
 
-        login(student).then(res => {
-            if (res) {
-                this.props.history.push(`\lobby`)
-            }
+        loginStudent(student).then(res => {
+            this.props.history.push('\lobby')
         })
 
     }
@@ -76,5 +74,3 @@ export default class loginStudent extends Component {
         )
     }
 }
-
-export default Login
