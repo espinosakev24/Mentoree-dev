@@ -14,6 +14,7 @@ router.route('/')
     });
   })
 
+
   // POST request - localhost:4000/api/teachers/
   .post(async (req, res) => {
     await pool.query('INSERT INTO teachers set ?', [req.body]);
@@ -23,6 +24,20 @@ router.route('/')
       result: req.body
     });
   });
+
+
+  router.route('/posts/:id')
+  // GET request - localhost:4000/api/teachers/posts/[id]
+    .get(async (req, res) => {
+      const { id } = req.params;
+      const result = await pool.query('SELECT * FROM posts WHERE teacher_id = ?', [id]);
+
+      res.json({
+        message: 'Post(s) from teacher selected succesfully!',
+        result
+      });
+    });
+
 
 router.route('/:id')
   // GET request - localhost:4000/api/teachers/[id]
@@ -36,6 +51,7 @@ router.route('/:id')
     });
   })
 
+
   // PUT request - localhost:4000/api/teachers/[id]
   .put(async (req, res) => {
     const { id } = req.params;
@@ -48,6 +64,7 @@ router.route('/:id')
       result
     });
   })
+
 
   // DELETE request - localhost:4000/api/teachers/[id]
   .delete(async (req, res) => {

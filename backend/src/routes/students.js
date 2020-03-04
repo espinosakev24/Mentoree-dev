@@ -9,6 +9,7 @@ const Student = require('../models/studentsMod');
 process.env.SECRET_KEY = 'secret';
 
 router.route('/register')
+  // GET request - localhost:4000/api/students/register
   .post((req, res) => {
     const newStudent = {
       first_name: req.body.first_name,
@@ -47,7 +48,9 @@ router.route('/register')
     })
   });
 
+
 router.route('/login')
+  // POST request - localhost:4000/api/students/login
   .post((req, res) => {
     Student.findOne({
       where: {
@@ -92,6 +95,20 @@ router.route('/')
     });
   });
 
+
+router.route('/posts/:id')
+  // GET request - localhost:4000/api/students/posts/[id]
+  .get(async (req, res) => {
+    const { id } = req.params;
+    const result = await pool.query('SELECT * FROM posts WHERE student_id = ?', [id]);
+
+    res.json({
+      message: 'Post(s) from student selected succesfully!',
+      result
+    });
+  });
+
+
 router.route('/:id')
   // GET request - localhost:4000/api/students/[id]
   .get(async (req, res) => {
@@ -103,6 +120,7 @@ router.route('/:id')
       result
     });
   })
+
 
   // PUT request - localhost:4000/api/students/[id]
   .put(async (req, res) => {
@@ -116,6 +134,7 @@ router.route('/:id')
       result
     });
   })
+
 
   // DELETE request - localhost:4000/api/students/[id]
   .delete(async (req, res) => {
