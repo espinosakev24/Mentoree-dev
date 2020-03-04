@@ -52,7 +52,7 @@ export default class RegisterStudent extends Component {
                 <div class="col-md-4 mx-auto">
                     <div class="cad text-center">
                         <div class="card-header">
-                            <h3>SignUp</h3>
+                            <h3>Register</h3>
                         </div>
                         <div class="card-body">
                         <form noValidate onSubmit={this.onSubmit}>
@@ -144,7 +144,7 @@ export default class RegisterStudent extends Component {
                                     />
                                 </div>
                                     <button type="submit" class="btn btn-success btn-block">
-                                        Sign Up
+                                        Register
                                     </button>
                             </form>
                         </div>
