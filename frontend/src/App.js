@@ -6,7 +6,7 @@ import Students from "./Api_tests/getUsers";
 
 import landing from "./components/landing";
 //import signIn from "./components/signIn";
-import signUpStudent from "./components/signUpStudent";
+import registerStudent from "./components/registerStudent";
 //import signUpTeacher from "./components/signUpTeacher";
 import Lobby from "./components/lobby";
 import AboutUs from "./components/aboutUs";
@@ -16,6 +16,10 @@ import Posts from "./Api_tests/getPosts";
 function App() {
   return (
     <Router>
+      <Link to='/registerStudent'>
+        <h3> Register as an student</h3>
+      </Link>
+
       <Link to='/'>
         <h3>GO TO LANDING PAGE</h3>
       </Link>
@@ -35,7 +39,7 @@ function App() {
 
       <switch>
         <Route exact path='/' component={ landing } />
-        <Route path='/signUpStudent' component={ signUpStudent } />
+        <Route path='/registerStudent' component={ registerStudent } />
         <Route path="/about" component={ AboutUs }/>
         <Route path="/lobby" component={ Lobby }/>
         <Route path="/testingStudents"  component={ Students }/>

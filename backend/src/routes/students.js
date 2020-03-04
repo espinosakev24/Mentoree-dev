@@ -7,23 +7,69 @@ const bcrypt = require('bcryptjs');
 const Student = require('../models/studentsMod');
 
 process.env.SECRET_KEY = 'secret';
-/*
-router.route('/test')
-  .get(async (req, res) => {
-    const result = await pool.query('SELECT email FROM students');
 
-    for (let i = 0; i < result.length; i++) {
-      if (result[i].email === "mrdoom.official@gmail.com") {
-        console.log("It works");
-      }
+router.route('/register')
+  .post((req, res) => {
+    const newStudent = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      contact: req.body.contact,
+      password: req.body.password,
+      location: req.body.location,
+      age: req.body.age,
+      email: req.body.email,
+      education: req.body.education
     }
 
-    res.json({
-      message: 'TEST!',
-      result
-    });
+    Student.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+    .then(student => {
+      if(!student) {
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+          newStudent.password = hash;
+          Student.create(newStudent)
+            .then(student => {
+              res.json({status: student.email + 'registered'})
+            })
+            .catch(err => {
+              res.send('error: ' + err);
+            })
+        })
+      } else {
+        res.json({error: "User already exists"})
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err);
+    })
   });
-*/
+
+router.route('/login')
+  .post((req, res) => {
+    Student.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+    .then(student => {
+      if(student) {
+        if(bcrypt.compareSync(req.body.password, student.password)) {
+          let token = jwt.sign(student.dataValues, process.env.SECRET_KEY, {
+            expiresIn: 1440
+          })
+          res.send(token)
+        }
+      } else {
+        res.status(400).json({ error: 'User does not exist' }) 
+      }
+    })
+    .catch(err => {
+      res.status(400).json({ error: err })
+    })
+  })
 
 router.route('/')
   // GET request - localhost:4000/api/students/
@@ -38,34 +84,6 @@ router.route('/')
 
   // POST request - localhost:4000/api/students/
   .post(async (req, res) => {
-    /*const newStudent = {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      contact: req.body.contact,
-      password: req.body.password,
-      location: req.body.location,
-      age: req.body.age,
-      email: req.body,email,
-      education: req.body.education
-    }
-
-    Student.findOne({
-      where: {
-        email: req.body.email
-      }
-    })
-    .then(student => {
-      if(!student) {
-        bcrypt.hash(req.password, 10, (err, hash) => {
-          newStudent.password = hash;
-          Student.create(UserData)
-          .then(user => {
-            res.json()
-          })
-        })
-      }
-    })
-  */
     await pool.query('INSERT INTO students set ?', [req.body]);
 
     res.json({
