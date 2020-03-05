@@ -11,11 +11,16 @@ import LoginTeacher from "./components/loginTeacher";
 import Lobby from "./components/lobby";
 import AboutUs from "./components/aboutUs";
 import Posts from "./Api_tests/getPosts";
-
+import Header from './components/header';
+import Home from './components/home';
+import About from './components/aboutUs';
+import './static/css/header.css';
+import './static/css/landinghome.css';
 
 function App() {
   return (
     <Router>
+      <Header />
       <Link to='/registerStudent'>
         <h3> Register as an student</h3>
       </Link>
@@ -30,7 +35,7 @@ function App() {
         <h3> Login as a teacher</h3>
       </Link>
 
-      <Link to='/'>
+      <Link to='/'> 
         <h3>GO TO LANDING PAGE</h3>
       </Link>
       <Link to='/about'>
@@ -47,7 +52,7 @@ function App() {
       </Link>
 
 
-      <Route exact path='/' component={ landing } />
+      <Route exact path='/' component={ Home } />
       <Route path='/registerStudent' component={ RegisterStudent } />
       <Route path='/loginStudent' component={ LoginStudent } />
       <Route path='/registerTeacher' component={ RegisterTeacher } />
