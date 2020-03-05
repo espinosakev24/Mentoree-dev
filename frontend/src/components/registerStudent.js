@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { registerStudent } from './registerLogin'
 
+
 export default class RegisterStudent extends Component {
     constructor() {
         super()
@@ -134,7 +135,7 @@ export default class RegisterStudent extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="password">Education</label>
+                                    <label htmlFor="education">Education</label>
                                     <input type="text"
                                     className="form-control"
                                     name="education"
