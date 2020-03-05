@@ -26,7 +26,7 @@ export default class LoginStudent extends Component {
         }
 
         loginStudent(student).then(res => {
-            this.props.history.push('\lobby')
+            this.props.history.push('\profileStudent')
         })
 
     }
