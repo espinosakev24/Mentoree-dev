@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: mentoree_db
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.19.04.2
+-- Server version	8.0.19-0ubuntu0.19.10.3
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -16,23 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `mentoree_db`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `mentoree_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `mentoree_db`;
+
+--
 -- Table structure for table `posts`
 --
 
 DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `posts` (
-  `post_id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) DEFAULT NULL,
-  `teacher_id` int(11) DEFAULT NULL,
+  `post_id` int NOT NULL AUTO_INCREMENT,
+  `student_id` int DEFAULT NULL,
+  `teacher_id` int DEFAULT NULL,
   `title` varchar(25) NOT NULL,
   `description` text NOT NULL,
   `category` varchar(15) NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `schedule` varchar(15) NOT NULL,
-  `price` int(11) NOT NULL,
-  `size` int(11) NOT NULL,
+  `price` int NOT NULL,
+  `size` int NOT NULL,
   `location` varchar(25) NOT NULL,
   PRIMARY KEY (`post_id`),
   KEY `student_id` (`student_id`),
@@ -60,16 +68,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `students`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `students` (
-  `student_id` int(11) NOT NULL AUTO_INCREMENT,
-  `post_id` int(11) DEFAULT NULL,
+  `student_id` int NOT NULL AUTO_INCREMENT,
+  `post_id` int DEFAULT NULL,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `contact` varchar(13) NOT NULL,
   `password` varchar(25) NOT NULL,
   `location` varchar(25) NOT NULL,
-  `age` int(3) NOT NULL,
+  `age` int NOT NULL,
   `email` varchar(45) NOT NULL,
   `education` varchar(45) NOT NULL,
   PRIMARY KEY (`student_id`),
@@ -95,22 +103,22 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `teachers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `teachers` (
-  `teacher_id` int(11) NOT NULL AUTO_INCREMENT,
-  `post_id` int(11) DEFAULT NULL,
+  `teacher_id` int NOT NULL AUTO_INCREMENT,
+  `post_id` int DEFAULT NULL,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `contact` varchar(13) NOT NULL,
   `password` varchar(25) NOT NULL,
   `location` varchar(25) NOT NULL,
-  `age` int(3) NOT NULL,
+  `age` int NOT NULL,
   `email` varchar(45) NOT NULL,
   `education` varchar(45) DEFAULT NULL,
   `biography` text NOT NULL,
   `fields` varchar(100) NOT NULL,
   `methodology` varchar(50) NOT NULL,
-  `reviews` int(11) NOT NULL,
+  `reviews` int NOT NULL,
   PRIMARY KEY (`teacher_id`),
   KEY `post_id` (`post_id`),
   CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`),
@@ -137,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-29 10:54:17
+-- Dump completed on 2020-03-02 13:09:04
