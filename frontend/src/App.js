@@ -11,7 +11,7 @@ import AboutUs from "./components/aboutUs";
 import Posts from "./Api_tests/getPosts";
 import Header from './components/header';
 import Home from './components/home';
-import About from './components/aboutUs';
+import './static/css/login.css'
 import './static/css/header.css';
 import './static/css/landinghome.css';
 
