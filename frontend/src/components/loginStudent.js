@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { loginStudent } from './registerLogin'
 import { Link } from 'react-router-dom'
+import { HashLink as Link_red } from 'react-router-hash-link';
 
 export default class LoginStudent extends Component {
     constructor() {
@@ -66,10 +67,10 @@ export default class LoginStudent extends Component {
                         <label class="form-check-label" for="check1" id="form-text">Keep me signed in</label>
                     </div>
                 </form> <br/>
-          <p class="justify-self-end">Not a member? <Link to='/#sect2'>
+          <p class="justify-self-end">Not a member? <Link_red to='/#sect2'>
               <a href="index.html#sect2">
                 <b>Get started</b>
-              </a></Link>
+              </a></Link_red>
               </p>
             </div>
         )
