@@ -49,6 +49,7 @@ router.route('/register')
   });
 
 
+
 router.route('/login')
   // POST request - localhost:4000/api/students/login
   .post((req, res) => {
@@ -74,6 +75,8 @@ router.route('/login')
     })
   })
 
+
+
 router.route('/')
   // GET request - localhost:4000/api/students/
   .get(async (req, res) => {
@@ -96,6 +99,7 @@ router.route('/')
   });
 
 
+  
 router.route('/posts/:id')
   // GET request - localhost:4000/api/students/posts/[id]
   .get(async (req, res) => {
@@ -107,6 +111,7 @@ router.route('/posts/:id')
       result
     });
   });
+
 
 
 router.route('/:id')

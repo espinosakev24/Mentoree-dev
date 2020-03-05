@@ -1,6 +1,84 @@
 const { Router } = require('express');
 const router = Router();
 const pool = require('../database');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
+const Teacher = require('../models/teachersMod');
+
+process.env.SECRET_KEY = 'secret';
+
+
+router.route('/register')
+  // GET request - localhost:4000/api/teachers/register
+  .post((req, res) => {
+    const newTeacher = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      contact: req.body.contact,
+      password: req.body.password,
+      location: req.body.location,
+      age: req.body.age,
+      email: req.body.email,
+      education: req.body.education,
+      biography: req.body.biography,
+      fields: req.body.fields,
+      methodology: req.body.methodology
+    }
+
+    Teacher.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+    .then(teacher => {
+      if(!teacher) {
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+          newTeacher.password = hash;
+          Teacher.create(newTeacher)
+            .then(teacher => {
+              res.json({status: teacher.email + 'registered'})
+            })
+            .catch(err => {
+              res.send('error: ' + err);
+            })
+        })
+      } else {
+        res.json({error: "User already exists"})
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err);
+    })
+  });
+
+
+
+router.route('/login')
+  // POST request - localhost:4000/api/teachers/login
+  .post((req, res) => {
+    Teacher.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+    .then(teacher => {
+      if(teacher) {
+        if(bcrypt.compareSync(req.body.password, teacher.password)) {
+          let token = jwt.sign(teacher.dataValues, process.env.SECRET_KEY, {
+            expiresIn: 1440
+          })
+          res.send(token)
+        }
+      } else {
+        res.status(400).json({ error: 'User does not exist' }) 
+      }
+    })
+    .catch(err => {
+      res.status(400).json({ error: err })
+    })
+  })
+
 
 
 router.route('/')
@@ -26,6 +104,7 @@ router.route('/')
   });
 
 
+
   router.route('/posts/:id')
   // GET request - localhost:4000/api/teachers/posts/[id]
     .get(async (req, res) => {
@@ -37,6 +116,7 @@ router.route('/')
         result
       });
     });
+
 
 
 router.route('/:id')

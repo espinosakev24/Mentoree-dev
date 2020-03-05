@@ -25,7 +25,7 @@ export const loginStudent = student => {
     })
     .then(res => {
         localStorage.setItem('usertoken', res.data)
-        console.log("Student: " + student.email + "logged in!")
+        console.log("Student: " + student.email + " logged in!")
         return res.data
     })
     .catch(err => {
@@ -50,7 +50,7 @@ export const registerTeacher = newTeacher => {
         reviews: newTeacher.reviews
     })
     .then(res => {
-        console.log("Teacher: " + newTeacher.email + "registered!")
+        console.log("Teacher: " + newTeacher.email + " registered!")
     })
 }
 
@@ -62,7 +62,7 @@ export const loginTeacher = teacher => {
     })
     .then(res => {
         localStorage.setItem('usertoken', res.data)
-        console.log("Teacher: " + teacher.email + "logged in!")
+        console.log("Teacher: " + teacher.email + " logged in!")
         return res.data
     })
     .catch(err => {
