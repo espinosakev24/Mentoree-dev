@@ -13,13 +13,7 @@ import AboutUs from "./components/aboutUs";
 import Posts from "./Api_tests/getPosts";
 import Header from './components/header';
 import Home from './components/home';
-<<<<<<< HEAD
-import About from './components/aboutUs';
-import profileStudent from './components/profileStudent'
-import profileTeacher from './components/profileTeacher'
-=======
 import './static/css/login.css'
->>>>>>> a4bd1f9c1b87faf043fbe75fa9b0e3c271643a6b
 import './static/css/header.css';
 import './static/css/landinghome.css';
 
