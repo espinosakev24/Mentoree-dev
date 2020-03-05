@@ -21,12 +21,14 @@ export default class Header extends Component {
                 </li>
                   <Link to='/about'>
                     <li className="nav-item active l-pad p">
-                      <a href="about_us.html" className="nav-link">About Us</a>
+                      <a className="nav-link">About Us</a>
                     </li>
                   </Link>
-                <li className="nav-item active last p">
-                  <a href="login.html" className="nav-link">Sign In</a>
-                </li>
+                <Link to='/loginStudent'>
+                  <li className="nav-item active last p">
+                    <a className="nav-link">Sign In</a>
+                  </li>
+                </Link>
               </ul>
               </div>
             </nav>
