@@ -14,6 +14,7 @@ import Home from './components/home';
 import './static/css/login.css'
 import './static/css/header.css';
 import './static/css/landinghome.css';
+import './static/css/registerStudent.css';
 
 function App() {
   return (

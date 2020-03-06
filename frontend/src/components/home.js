@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import landingImg1 from '../static/images/home_img.svg';
 import landingImg2 from '../static/images/img_sect_2.svg'
+import { Link } from 'react-router-dom'
 export default class Home extends Component {
     render() {
         return (

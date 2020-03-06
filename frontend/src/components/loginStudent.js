@@ -59,7 +59,7 @@ export default class LoginStudent extends Component {
                         />
                     </div>
                     <small class="form-text" id="form-text"><strong>Forgot your password?</strong></small> <br/> 
-                    <button type="submit" class="btn btn-primary btn-block btn-in">
+                    <button type="submit" class="btn btn-primary btn-block" id="btn-in">
                         Login
                     </button> <br/>
                     <div class="form-check">
