@@ -100,57 +100,55 @@ export default class RegisterStudent extends Component {
                         />
                     </div>
                 </div> <br/>
-                <div className="row col-12 d-flex justify-content-lg-between justify-content-md-center justify-content-sm-center">
-                    <div className="row col-lg-6 col-xl-6 col-sm-12 col-md-12 d-flex justify-content-between">
-                        <div className="form-group col-6">
-                            <label htmlFor="contact" id="text">Contact</label>
-                            <input type="text"
-                            className="form-control"
-                            name="contact"
-                            placeholder="Enter Contact"
-                            value={this.state.contact}
-                            onChange={this.onChange}
-                            id="fields"
-                            />
-                        </div>
-
-                        <div className="form-group col-6">
-                            <label htmlFor="education" id="text">Education</label>
-                            <input type="text"
-                            className="form-control"
-                            name="education"
-                            placeholder="Enter Education"
-                            value={this.state.education}
-                            onChange={this.onChange}
-                            id="fields"
-                            />
-                        </div>
+                <div className="row d-flex justify-content-between">
+                    <div className="form-group col-6">
+                        <label htmlFor="contact" id="text">Contact</label>
+                        <input type="text"
+                        className="form-control"
+                        name="contact"
+                        placeholder="Enter Contact"
+                        value={this.state.contact}
+                        onChange={this.onChange}
+                        id="fields"
+                        />
                     </div>
 
-                    <div className="row col-lg-6 col-xl-6 col-sm-12 col-md-12">
-                        <div className="form-group col-6">
-                            <label htmlFor="location" id="text">Location</label>
-                            <input type="text"
-                            className="form-control"
-                            name="location"
-                            placeholder="Enter Location"
-                            value={this.state.location}
-                            onChange={this.onChange}
-                            id="fields"
-                            />
-                        </div>
+                    <div className="form-group col-6">
+                        <label htmlFor="education" id="text">Education</label>
+                        <input type="text"
+                        className="form-control"
+                        name="education"
+                        placeholder="Enter Education"
+                        value={this.state.education}
+                        onChange={this.onChange}
+                        id="fields"
+                        />
+                    </div>
+                </div>
 
-                        <div className="form-group col-6">
-                            <label htmlFor="age" id="text">Age</label>
-                            <input type="number"
-                            className="form-control"
-                            name="age"
-                            placeholder="Enter Age"
-                            value={this.state.age}
-                            onChange={this.onChange}
-                            id="fields"
-                            />
-                        </div>
+                <div className="row d-flex justify-content-between">
+                    <div className="form-group col-6">
+                        <label htmlFor="location" id="text">Location</label>
+                        <input type="text"
+                        className="form-control"
+                        name="location"
+                        placeholder="Enter Location"
+                        value={this.state.location}
+                        onChange={this.onChange}
+                        id="fields"
+                        />
+                    </div>
+
+                    <div className="form-group col-6">
+                        <label htmlFor="age" id="text">Age</label>
+                        <input type="number"
+                        className="form-control"
+                        name="age"
+                        placeholder="Enter Age"
+                        value={this.state.age}
+                        onChange={this.onChange}
+                        id="fields"
+                        />
                     </div>
                 </div>
                 <br/>
