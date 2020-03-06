@@ -31,8 +31,8 @@ function App() {
       <Route path="/lobby" component={ Lobby }/>
       <Route path="/testingStudents"  component={ Students }/>
       <Route path="/testingPost" component={ Posts}/>
-      <Route path="/profileStudent" component={ profileStudent}/>
-      <Route path="/profileTeacher" component={ profileTeacher}/>
+      {/*<Route path="/profileStudent" component={ profileStudent}/>
+      <Route path="/profileTeacher" component={ profileTeacher}/>*/}
 
         <Link to='/registerStudent'>
             <h3> Register as an student</h3>
