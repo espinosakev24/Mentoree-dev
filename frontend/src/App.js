@@ -17,6 +17,7 @@ import './static/css/login.css'
 import './static/css/header.css';
 import './static/css/landinghome.css';
 import './static/css/registerStudent.css';
+import './static/css/studentProfile.css';
 
 function App() {
   return (
