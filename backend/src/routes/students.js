@@ -77,6 +77,30 @@ router.route('/login')
 
 
 
+router.route('/profile')
+  // GET request - localhost:4000/api/students/profile
+  .get((req, res) => {
+    let decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
+
+    Student.findOne({
+      where: {
+        student_id: decoded.student_id
+      }
+    })
+    .then(student => {
+      if (student) {
+        res.json(student);
+      } else {
+        res.send('Student does not exist');
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err);
+    })
+  });
+
+
+
 router.route('/')
   // GET request - localhost:4000/api/students/
   .get(async (req, res) => {

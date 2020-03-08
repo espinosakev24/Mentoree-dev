@@ -3,6 +3,12 @@ import jwt_decode from 'jwt-decode'
 
 
 export default class profileTeacher extends Component {
+    logOut(e) {
+        e.preventDefault()
+        localStorage.removeItem('teacherToken')
+        this.props.history.push(`/`)
+    }
+
     constructor() {
         super()
         this.state = {
@@ -22,7 +28,7 @@ export default class profileTeacher extends Component {
     }
 
     componentDidMount() {
-        const token = localStorage.usertoken;
+        const token = localStorage.teacherToken;
         const decoded = jwt_decode(token);
         this.setState({
             first_name: decoded.first_name,
@@ -92,6 +98,9 @@ export default class profileTeacher extends Component {
                             <tr>
                                 <td>Reviews</td>
                                 <td>{this.state.reviews}</td>
+                            </tr>
+                            <tr>
+                                <a href="" onClick={this.logOut.bind(this)}>Logout</a>
                             </tr>
                         </div>
                     </div>

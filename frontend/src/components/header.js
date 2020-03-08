@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom'
+
 import Logo from '../static/images/imglogo.svg';
 import hamburguermenu from '../static/images/menu.svg'
-import { Link } from 'react-router-dom'
+
+
 export default class Header extends Component {
     render() {
          return (
@@ -16,17 +19,17 @@ export default class Header extends Component {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav text-center ml-auto small-phone nav-items">
-                <li className="nav-item active l-pad p first">
+                {/* <li className="nav-item active l-pad p first">
                   <a href="#" className="nav-link">Take a tour</a>
-                </li>
+                </li> */}
                   <Link to='/about'>
                     <li className="nav-item active l-pad p">
                       <a className="nav-link">About Us</a>
                     </li>
                   </Link>
-                <Link to='/loginStudent'>
+                <Link to='/preLogin'>
                   <li className="nav-item active last p">
-                    <a className="nav-link">Sign In</a>
+                    <a className="nav-link">Log in</a>
                   </li>
                 </Link>
               </ul>

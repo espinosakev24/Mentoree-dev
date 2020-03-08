@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Header from './header'
+
 import Cami from '../static/images/Cami.svg'
 import Fifi from '../static/images/Fifi.svg'
 import Kevin from '../static/images/Kevin.svg'
@@ -7,6 +9,7 @@ export default class AboutUs extends Component {
     render() {
         return (
             <div>
+                <Header />
             <div class="container pl-10 pr-10 mt-5 text-center">
                     <h1 class="display-5">Who we are</h1> <br/>
                     <p class="text-dark">We are three developers passionate about education based on technology. <br/>

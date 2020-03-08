@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { registerStudent } from './registerLogin'
+import Header from './header';
 
 export default class RegisterStudent extends Component {
     constructor() {
@@ -12,7 +13,8 @@ export default class RegisterStudent extends Component {
             location: '',
             age: '',
             email: '',
-            education: ''
+            education: '',
+            errors: {}
         }
 
         this.onChange = this.onChange.bind(this);
@@ -48,6 +50,7 @@ export default class RegisterStudent extends Component {
     render() {
         return (
             <div class="container pl-10 pr-10 mt-5">
+                <Header />
                 <h3><strong>Register</strong></h3> <br/>
                 <form noValidate onSubmit={this.onSubmit} className="" id="main-form">
                     <div className="row d-flex justify-content-between ">

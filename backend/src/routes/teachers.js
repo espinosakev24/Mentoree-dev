@@ -81,6 +81,30 @@ router.route('/login')
 
 
 
+router.route('/profile')
+  // GET request - localhost:4000/api/teachers/profile
+  .get((req, res) => {
+    let decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
+
+    Teacher.findOne({
+      where: {
+        teacher_id: decoded.teacher_id
+      }
+    })
+    .then(teacher => {
+      if (teacher) {
+        res.json(teacher);
+      } else {
+        res.send('Teacher does not exist');
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err);
+    })
+  });
+
+
+
 router.route('/')
   // GET request - localhost:4000/api/teachers/
   .get(async (req, res) => {

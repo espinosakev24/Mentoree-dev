@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { loginStudent } from './registerLogin'
+import Header from './header'
+
 import { Link } from 'react-router-dom'
 import { HashLink as Link_red } from 'react-router-hash-link';
+
 
 export default class LoginStudent extends Component {
     constructor() {
         super()
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errors: {}
         }
 
         this.onChange = this.onChange.bind(this);
@@ -28,7 +32,7 @@ export default class LoginStudent extends Component {
         }
 
         loginStudent(student).then(res => {
-            this.props.history.push('\profileStudent')
+            this.props.history.push('\lobby')
         })
 
     }
@@ -36,6 +40,7 @@ export default class LoginStudent extends Component {
     render() {
         return (
             <div class="container pl-10 pr-10 mt-5 d-flex flex-column align-items-center justify-content-start">
+                <Header />
                 <h1><strong>Log In</strong></h1><br/>
                 <form noValidate onSubmit={this.onSubmit} class="form-control h-100" id="form">
                     <div class="form-group">

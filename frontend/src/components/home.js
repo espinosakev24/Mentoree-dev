@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Header from "./header";
+
 import landingImg1 from '../static/images/home_img.svg';
 import landingImg2 from '../static/images/img_sect_2.svg'
 import { Link } from 'react-router-dom'
@@ -6,6 +8,7 @@ export default class Home extends Component {
     render() {
         return (
             <div>
+                <Header />
             <section>
                 <div class="container pl-10 pr-0 mt-5">
                 <div class="row">
@@ -27,8 +30,12 @@ export default class Home extends Component {
                 <h1 class="display-3" id="title2">Who are you?</h1> <br/>
                 <img src={landingImg2} alt="" class="img-sect-2"/> <br/>
                 <div class="btns-sect-2">
+                <Link to='/registerStudent'>
                     <button class="button btn-lg btn-primary btn-sect-2"><p class="b-text1">I'm a student</p><p class="b-text2">Student</p></button>
+                </Link>
+                <Link to='/registerTeacher'>
                     <button class="button btn-lg btn-primary btn-sect-2"><p class="b-text1">I'm a teacher</p><p class="b-text2">Teacher</p></button>
+                </Link>
                 </div> <br/>
 
                 </div>

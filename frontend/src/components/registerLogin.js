@@ -24,7 +24,7 @@ export const loginStudent = student => {
         password: student.password
     })
     .then(res => {
-        localStorage.setItem('usertoken', res.data)
+        localStorage.setItem('studentToken', res.data)
         console.log("Student: " + student.email + " logged in!")
         return res.data
     })
@@ -61,7 +61,7 @@ export const loginTeacher = teacher => {
         password: teacher.password
     })
     .then(res => {
-        localStorage.setItem('usertoken', res.data)
+        localStorage.setItem('teacherToken', res.data)
         console.log("Teacher: " + teacher.email + " logged in!")
         return res.data
     })

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { registerTeacher } from './registerLogin'
+import Header from './header'
 
 
 export default class RegisterTeacher extends Component {
@@ -55,6 +56,7 @@ export default class RegisterTeacher extends Component {
     render() {
         return (
             <div class="container p-4">
+            <Header />
             <div class="row">
                 <div class="col-md-4 mx-auto">
                     <div class="cad text-center">
