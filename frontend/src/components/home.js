@@ -30,12 +30,12 @@ export default class Home extends Component {
                 <h1 class="display-3" id="title2">Who are you?</h1> <br/>
                 <img src={landingImg2} alt="" class="img-sect-2"/> <br/>
                 <div class="btns-sect-2">
-                <Link to='/registerStudent'>
-                    <button class="button btn-lg btn-primary btn-sect-2"><p class="b-text1">I'm a student</p><p class="b-text2">Student</p></button>
-                </Link>
-                <Link to='/registerTeacher'>
-                    <button class="button btn-lg btn-primary btn-sect-2"><p class="b-text1">I'm a teacher</p><p class="b-text2">Teacher</p></button>
-                </Link>
+                    <Link to='/registerStudent' className="w-100 d-flex justify-content-center">
+                        <button class="button w-75 btn-primary btn-sect-2"><p class="b-text1">I'm a student</p><p class="b-text2">Student</p></button>
+                    </Link>
+                    <Link to='/registerTeacher' className="w-100 d-flex justify-content-center">
+                        <button class="button w-75 btn-primary btn-sect-2"><p class="b-text1">I'm a teacher</p><p class="b-text2">Teacher</p></button>
+                    </Link>
                 </div> <br/>
 
                 </div>
