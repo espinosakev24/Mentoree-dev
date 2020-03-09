@@ -2,7 +2,6 @@ const { Router } = require('express');
 const router = Router();
 const pool = require('../database');
 
-
 router.route('/')
   // GET request - localhost:4000/api/posts/
   .get(async (req, res) => {
@@ -17,6 +16,8 @@ router.route('/')
   // POST request - localhost:4000/api/posts/
   .post(async (req, res) => {
     await pool.query('INSERT INTO posts set ?', [req.body]);
+    const post_id = await pool.query('SELECT LAST_INSERT_ID() AS last_id;');
+    await pool.query('UPDATE students set post_id = ? WHERE student_id = ?', [post_id[0].last_id, req.body.student_id]);
 
     res.json({
       message: 'Post created succesfully!',

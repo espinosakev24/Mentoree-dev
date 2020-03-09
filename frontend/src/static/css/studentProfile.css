@@ -1,0 +1,43 @@
+@media (min-width: 768px) {
+    .post-class {
+        background-color: #2F80ED;
+        color: white;
+    }
+    #navbarSupportedContent {
+        display: flex;
+    }
+    .profile-text {
+        padding: 0 1rem !important;
+    }
+}
+.l-block {
+    color: #333333;
+}
+.logout, .l-block > h3{
+    color: #2F80ED;
+}
+.c-cont {
+    padding-left: 5rem;
+    padding-right: 4rem;
+}
+.c-post {
+    color: black;
+    margin-bottom: 5rem;
+}
+.c-menu {
+    font-size: .8rem;
+    color: #333333;
+}
+.c-menu > p:first-child {
+    background-color: #9B51E0;
+    color: white;
+}
+.c-menu > p {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 1em;
+    border-radius: 2rem;
+}
+.l-block-cont {
+    margin-bottom: 3rem;
+}
