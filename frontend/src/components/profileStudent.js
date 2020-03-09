@@ -11,6 +11,7 @@ import phone from '../static/images/phone.svg';
 import little_fifi from '../static/images/little_fifi.svg';
 import close from '../static/images/correct.svg';
 import correct from '../static/images/close.svg';
+import HeaderLogged from './headerLogged';
 
 export default class profileStudent extends Component {
   logOut (e) {
@@ -50,6 +51,8 @@ export default class profileStudent extends Component {
 
   render () {
     return (
+      <div>
+      <HeaderLogged />
       <div class='container pl-10 pr-0 mt-5'>
         <div class='row'>
           <div class='col-3 d-flex flex-column align-items-center l-block'>
@@ -200,7 +203,7 @@ export default class profileStudent extends Component {
           </div>
         </div>
       </div>
-
+      </div>
     );
   }
 }
