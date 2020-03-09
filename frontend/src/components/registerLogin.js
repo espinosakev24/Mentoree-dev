@@ -1,71 +1,71 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export const registerStudent = newStudent => {
-    return axios
+  return axios
     .post('api/students/register', {
-        first_name: newStudent.first_name,
-        last_name: newStudent.last_name,
-        contact: newStudent.contact,
-        password: newStudent.password,
-        location: newStudent.location,
-        age: newStudent.age,
-        email: newStudent.email,
-        education: newStudent.education
+      first_name: newStudent.first_name,
+      last_name: newStudent.last_name,
+      contact: newStudent.contact,
+      password: newStudent.password,
+      location: newStudent.location,
+      age: newStudent.age,
+      email: newStudent.email,
+      education: newStudent.education
     })
     .then(res => {
-        console.log("Student: " + newStudent.email + " registered!")
-    })
-}
+      console.log('Student: ' + newStudent.email + ' registered!');
+    });
+};
 
 export const loginStudent = student => {
-    return axios
+  return axios
     .post('api/students/login', {
-        email: student.email,
-        password: student.password
+      email: student.email,
+      password: student.password
     })
     .then(res => {
-        localStorage.setItem('studentToken', res.data)
-        console.log("Student: " + student.email + " logged in!")
-        return res.data
+      localStorage.setItem('studentToken', res.data);
+      console.log('Student: ' + student.email + ' logged in!');
+      return res.data;
     })
     .catch(err => {
-        console.log(err)
-    })
-}
+      console.log(err);
+    });
+};
 
 export const registerTeacher = newTeacher => {
-    return axios
+  return axios
     .post('api/teachers/register', {
-        first_name: newTeacher.first_name,
-        last_name: newTeacher.last_name,
-        contact: newTeacher.contact,
-        password: newTeacher.password,
-        location: newTeacher.location,
-        age: newTeacher.age,
-        email: newTeacher.email,
-        education: newTeacher.education,
-        biography: newTeacher.biography,
-        fields: newTeacher.fields,
-        methodology: newTeacher.methodology,
-        reviews: newTeacher.reviews
+      first_name: newTeacher.first_name,
+      last_name: newTeacher.last_name,
+      contact: newTeacher.contact,
+      password: newTeacher.password,
+      location: newTeacher.location,
+      age: newTeacher.age,
+      email: newTeacher.email,
+      education: newTeacher.education,
+      biography: newTeacher.biography,
+      fields: newTeacher.fields,
+      methodology: newTeacher.methodology,
+      reviews: newTeacher.reviews
     })
     .then(res => {
-        console.log("Teacher: " + newTeacher.email + " registered!")
-    })
-}
+      console.log('Teacher: ' + newTeacher.email + ' registered!');
+    });
+};
 
 export const loginTeacher = teacher => {
-    return axios
+  return axios
     .post('api/teachers/login', {
-        email: teacher.email,
-        password: teacher.password
+      email: teacher.email,
+      password: teacher.password
     })
     .then(res => {
-        localStorage.setItem('teacherToken', res.data)
-        console.log("Teacher: " + teacher.email + " logged in!")
-        return res.data
+      localStorage.setItem('teacherToken', res.data);
+      console.log('Teacher: ' + teacher.email + ' logged in!');
+      return res.data;
     })
     .catch(err => {
-        console.log(err)
-    })
-}
+      console.log(err);
+    });
+};

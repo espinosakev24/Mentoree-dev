@@ -20,35 +20,33 @@ router.route('/register')
       age: req.body.age,
       email: req.body.email,
       education: req.body.education
-    }
+    };
 
     Student.findOne({
       where: {
         email: req.body.email
       }
     })
-    .then(student => {
-      if(!student) {
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-          newStudent.password = hash;
-          Student.create(newStudent)
-            .then(student => {
-              res.json({status: student.email + 'registered'})
-            })
-            .catch(err => {
-              res.send('error: ' + err);
-            })
-        })
-      } else {
-        res.json({error: "User already exists"})
-      }
-    })
-    .catch(err => {
-      res.send('error: ' + err);
-    })
+      .then(student => {
+        if (!student) {
+          bcrypt.hash(req.body.password, 10, (err, hash) => {
+            newStudent.password = hash;
+            Student.create(newStudent)
+              .then(student => {
+                res.json({ status: student.email + 'registered' });
+              })
+              .catch(err => {
+                res.send('error: ' + err);
+              });
+          });
+        } else {
+          res.json({ error: 'User already exists' });
+        }
+      })
+      .catch(err => {
+        res.send('error: ' + err);
+      });
   });
-
-
 
 router.route('/login')
   // POST request - localhost:4000/api/students/login
@@ -58,48 +56,44 @@ router.route('/login')
         email: req.body.email
       }
     })
-    .then(student => {
-      if(student) {
-        if(bcrypt.compareSync(req.body.password, student.password)) {
-          let token = jwt.sign(student.dataValues, process.env.SECRET_KEY, {
-            expiresIn: 1440
-          })
-          res.send(token)
+      .then(student => {
+        if (student) {
+          if (bcrypt.compareSync(req.body.password, student.password)) {
+            const token = jwt.sign(student.dataValues, process.env.SECRET_KEY, {
+              expiresIn: 1440
+            });
+            res.send(token);
+          }
+        } else {
+          res.status(400).json({ error: 'User does not exist' });
         }
-      } else {
-        res.status(400).json({ error: 'User does not exist' }) 
-      }
-    })
-    .catch(err => {
-      res.status(400).json({ error: err })
-    })
-  })
-
-
+      })
+      .catch(err => {
+        res.status(400).json({ error: err });
+      });
+  });
 
 router.route('/profile')
   // GET request - localhost:4000/api/students/profile
   .get((req, res) => {
-    let decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
+    const decoded = jwt.verify(req.headers.authorization, process.env.SECRET_KEY);
 
     Student.findOne({
       where: {
         student_id: decoded.student_id
       }
     })
-    .then(student => {
-      if (student) {
-        res.json(student);
-      } else {
-        res.send('Student does not exist');
-      }
-    })
-    .catch(err => {
-      res.send('error: ' + err);
-    })
+      .then(student => {
+        if (student) {
+          res.json(student);
+        } else {
+          res.send('Student does not exist');
+        }
+      })
+      .catch(err => {
+        res.send('error: ' + err);
+      });
   });
-
-
 
 router.route('/')
   // GET request - localhost:4000/api/students/
@@ -122,8 +116,6 @@ router.route('/')
     });
   });
 
-
-  
 router.route('/posts/:id')
   // GET request - localhost:4000/api/students/posts/[id]
   .get(async (req, res) => {
@@ -135,8 +127,6 @@ router.route('/posts/:id')
       result
     });
   });
-
-
 
 router.route('/:id')
   // GET request - localhost:4000/api/students/[id]
@@ -150,7 +140,6 @@ router.route('/:id')
     });
   })
 
-
   // PUT request - localhost:4000/api/students/[id]
   .put(async (req, res) => {
     const { id } = req.params;
@@ -163,7 +152,6 @@ router.route('/:id')
       result
     });
   })
-
 
   // DELETE request - localhost:4000/api/students/[id]
   .delete(async (req, res) => {
