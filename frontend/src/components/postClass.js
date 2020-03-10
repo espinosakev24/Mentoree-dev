@@ -6,6 +6,9 @@ import user_big from '../static/images/user_big.svg'
 import pin_big from '../static/images/pin_big.svg'
 import candelar from '../static/images/candelar.svg'
 import '../static/css/post.css';
+import { Link } from 'react-router-dom';
+import $ from "jquery";
+
 
 export default class PostClass extends Component {
   constructor () {
@@ -35,7 +38,7 @@ export default class PostClass extends Component {
     e.preventDefault();
 
     const post = {
-      student_id: jwt_decode(localStorage.studentToken).student_id,
+    student_id: jwt_decode(localStorage.studentToken).student_id,
       title: this.state.title,
       description: this.state.description,
       category: this.state.category,
@@ -49,7 +52,6 @@ export default class PostClass extends Component {
       this.props.history.push('\lobby');
     });
   }
-
   render () {
     return (
       <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
@@ -188,15 +190,26 @@ export default class PostClass extends Component {
             <button type='submit' class='btn btn-1'>
                         Cancel
             </button>
-            <button type='submit' class='btn btn-2'>
-                        Post class
-            </button>
+
+              <button onclick="window.open('/lobby', '_blank');" type='submit' class='btn btn-2' id="submitButton">
+                          Post class
+              </button>
+              
           </div>
         </form>
         <br/>
         <br/>
       </div>
-
-
     )}
 }
+/*window.onload = function() {
+  const urlPosts = 'http://localhost:4000/api/posts';
+  const urlStudents = 'http://localhost:4000/api/students';
+  $.getJSON(urlPosts, function (data) {
+    let index = data.result[0].student_id;
+    console.log(index);
+  })
+  $.getJSON(urlStudents, function (data){
+    console.log(data.result[index].first_name)
+  });
+}*/
