@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import HeaderLogged from './headerLogged';
+import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import '../static/css/lobby.css'
 import dollar from '../static/images/dollar-symbol.svg';
 import user from '../static/images/user.svg';
 import pin from '../static/images/pin.svg';
-import $ from "jquery";
 
 
 class Owner extends Component {
@@ -38,21 +38,29 @@ export default class Lobby extends Component {
 
   componentDidMount() {
     const url = '/api/posts/';
+    if (localStorage.teacherToken) {
+      const decoded = jwt_decode(localStorage.teacherToken);
+      this.setState({ teacher_id: decoded.teacher_id });
+    }
     axios.get(url).then(response => response.data)
     .then((data) => {
       this.setState({ posts: data.result, fullName: data.fullName })
-      console.log(this.state.fullName);
     })
   }
 
-    /*getPostOwner(){
-    var urlStudents = `http://localhost:4000/api/students/${id}`;
-    $.getJSON(urlStudents, function (data) {
-      let name = data.result[0].first_name;
-      console.log(`the name is: ${name} ${id}`)
-      return name;
-    });
-  }*/
+
+  postTeacherRequest = (pst_id, tch_id) => {
+    console.log("postTeacherReq - Post ID", pst_id);
+    console.log("postTeacherReq - Teacher ID", tch_id);
+
+    axios.put(`/api/posts/${pst_id}`, {
+      teacher_id: tch_id
+    })
+    .then(response => {
+      console.log("Teacher suscribed!")
+    })
+  }
+
   
   render () {
     const isStudent = (
@@ -86,15 +94,44 @@ export default class Lobby extends Component {
           </div>
           ))}
         </div>
-        student
       </div>
     );
 
     const isTeacher = (
-      <div>
-        I'm Teacher
+      <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
+        <HeaderLogged />
+        <div className="row d-flex justify-content-between lobby-fields">
+          <div>Art</div>
+          <div>Humanities</div>
+          <div>Languages</div>
+          <div>Wellness</div>
+          <div>Technology</div>
+          <div>Science</div>
+        </div>
+        <br/><br/>
+        <div className="row">
+          {this.state.posts.map((post) => (
+          <div class='container col-5 pr-5' id="posts">
+            <h3><b>{post.title}</b></h3>
+            <div class='d-flex justify-content-between  c-menu'>
+          <p>{post.category}</p> <Owner ow={post.student_id}/> <p>date: date{/*{post.creation_date}*/}</p>
+            </div>
+            <p>
+              {post.description} <br/>
+              <b>Schedule:</b>  {post.schedule}
+            </p>
+            <div class='d-flex justify-content-between'>
+              <div><img src={dollar} alt='' /> {post.price}/h</div>
+              <div><img src={user} alt='' /> Group: {post.size}</div>
+              <div><img src={pin} alt='' /> {post.location}</div>
+            </div>
+            <button onClick={this.postTeacherRequest.bind(this, post.post_id, this.state.teacher_id)}>Suscribe</button>
+          </div>
+          ))}
+        </div>
       </div>
     );
+
     return (
       <div>
         <HeaderLogged />

@@ -6,8 +6,6 @@ import user_big from '../static/images/user_big.svg'
 import pin_big from '../static/images/pin_big.svg'
 import candelar from '../static/images/candelar.svg'
 import '../static/css/post.css';
-import { Link } from 'react-router-dom';
-import $ from "jquery";
 
 
 export default class PostClass extends Component {

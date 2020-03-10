@@ -45,38 +45,13 @@ router.route('/:id')
     });
   })
 
-
-
-  router.route('/students/:id')
-  // GET request - localhost:4000/api/posts/students/[id]
-  .get(async (req, res) => {
-    const { id } = req.params;
-    const result = await pool.query('SELECT * FROM posts WHERE student_id = ?', [id]);
-
-    res.json({
-      message: 'Post selected succesfully!',
-      result
-    });
-  })
-
-
-
-  router.route('/teachers/:id')
-  // GET request - localhost:4000/api/posts/teachers/[id]
-  .get(async (req, res) => {
-    const { id } = req.params;
-    const result = await pool.query('SELECT * FROM posts WHERE teacher_id = ?', [id]);
-
-    res.json({
-      message: 'Post selected succesfully!',
-      result
-    });
-  })
-
   // PUT request - localhost:4000/api/posts/[id]
   .put(async (req, res) => {
+    console.log(req.params);
+    console.log(req.body);
     const { id } = req.params;
     await pool.query('UPDATE posts set ? WHERE post_id = ?', [req.body, id]);
+    await pool.query('UPDATE teachers set post_id = ? WHERE ?', [id, req.body]);
     const result = await pool.query('SELECT * FROM posts WHERE post_id = ?', [id]);
 
     res.json({
@@ -106,5 +81,32 @@ router.route('/:id')
       result: temp
     });
   });
+
+
+  router.route('/students/:id')
+  // GET request - localhost:4000/api/posts/students/[id]
+  .get(async (req, res) => {
+    const { id } = req.params;
+    const result = await pool.query('SELECT * FROM posts WHERE student_id = ?', [id]);
+
+    res.json({
+      message: 'Post selected succesfully!',
+      result
+    });
+  })
+
+
+
+  router.route('/teachers/:id')
+  // GET request - localhost:4000/api/posts/teachers/[id]
+  .get(async (req, res) => {
+    const { id } = req.params;
+    const result = await pool.query('SELECT * FROM posts WHERE teacher_id = ?', [id]);
+
+    res.json({
+      message: 'Post selected succesfully!',
+      result
+    });
+  })
 
 module.exports = router;
