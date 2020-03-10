@@ -17,3 +17,4 @@ export const postClass = newPost => {
       console.log('Post created!');
     });
 };
+
