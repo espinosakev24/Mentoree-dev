@@ -45,6 +45,34 @@ router.route('/:id')
     });
   })
 
+
+
+  router.route('/students/:id')
+  // GET request - localhost:4000/api/posts/students/[id]
+  .get(async (req, res) => {
+    const { id } = req.params;
+    const result = await pool.query('SELECT * FROM posts WHERE student_id = ?', [id]);
+
+    res.json({
+      message: 'Post selected succesfully!',
+      result
+    });
+  })
+
+
+
+  router.route('/teachers/:id')
+  // GET request - localhost:4000/api/posts/teachers/[id]
+  .get(async (req, res) => {
+    const { id } = req.params;
+    const result = await pool.query('SELECT * FROM posts WHERE teacher_id = ?', [id]);
+
+    res.json({
+      message: 'Post selected succesfully!',
+      result
+    });
+  })
+
   // PUT request - localhost:4000/api/posts/[id]
   .put(async (req, res) => {
     const { id } = req.params;
