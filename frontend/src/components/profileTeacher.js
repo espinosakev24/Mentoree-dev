@@ -8,8 +8,9 @@ import user from '../static/images/user.svg';
 import pin from '../static/images/pin.svg';
 import at from '../static/images/at.svg';
 import phone from '../static/images/phone.svg';
-import HeaderLogged from './headerLogged';
 import book from '../static/images/book.svg';
+import HeaderLogged from './headerLogged';
+import axios from 'axios';
 
 export default class profileTeacher extends Component {
   logOut (e) {
@@ -21,6 +22,7 @@ export default class profileTeacher extends Component {
   constructor () {
     super();
     this.state = {
+      teacher_id: '',
       first_name: '',
       last_name: '',
       contact: '',
@@ -32,27 +34,33 @@ export default class profileTeacher extends Component {
       biography: '',
       fields: '',
       methodology: '',
-      reviews: ''
+      reviews: '',
+      posts: []
     };
   }
 
   componentDidMount () {
     const token = localStorage.teacherToken;
     const decoded = jwt_decode(token);
-    this.setState({
-      first_name: decoded.first_name,
-      last_name: decoded.last_name,
-      contact: decoded.contact,
-      password: decoded.password,
-      location: decoded.location,
-      age: decoded.age,
-      email: decoded.email,
-      education: decoded.education,
-      biography: decoded.biography,
-      fields: decoded.fields,
-      methodology: decoded.methodology,
-      reviews: decoded.reviews
-    });
+    axios.get(`/api/posts/teachers/${decoded.teacher_id}`).then(response => response.data)
+    .then((data) => {
+      this.setState({
+        teacher_id: decoded.teacher_id,
+        first_name: decoded.first_name,
+        last_name: decoded.last_name,
+        contact: decoded.contact,
+        password: decoded.password,
+        location: decoded.location,
+        age: decoded.age,
+        email: decoded.email,
+        education: decoded.education,
+        biography: decoded.biography,
+        fields: decoded.fields,
+        methodology: decoded.methodology,
+        reviews: decoded.reviews,
+        posts: data.result
+      });
+    })
   }
 
   render () {
@@ -93,56 +101,21 @@ export default class profileTeacher extends Component {
           </div>
 
           <div class='col-9 c-cont'>
-            <h3 class='not'>Classes you have posted</h3> <br /><br />
-
-            <div class='container p-0 c-post'>
-              <h3><b>Help with you are the dog I'm the cat we're in the second video</b></h3>
-              <div class='d-flex justify-content-between p-0 c-menu'>
-                <p>Science</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>date: 24/02/20</p>
+          <h3 class='not'>Classes where you have applied</h3> <br /><br />
+            {this.state.posts.map((post) => (
+              <div class='container p-0 c-post'>
+                <h3><b>{post.title}</b></h3>
+                <div class='d-flex justify-content-between p-0 c-menu'>
+                  <p>{post.category}</p> <p>Posted by: SomeName</p> <p>Date: {post.creation_date}</p>
+                </div>
+                <p>{post.description}</p>
+                <div class='d-flex justify-content-between'>
+                  <div><img src={dollar} alt='' /> {post.price}/h</div>
+                  <div><img src={user} alt='' /> {post.size}</div>
+                  <div><img src={pin} alt='' /> {post.location}</div>
+                </div>
               </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Sapiente voluptate blanditiis soluta quis rem, minima odio
-                            aperiam qui pariatur. Praesentium veniam impedit sapiente
-                            atque et saepe quisquam, quae vero non!
-              </p>
-              <div class='d-flex justify-content-between'>
-                <div><img src={dollar} alt='' /> 30.000/h</div>
-                <div><img src={user} alt='' /> Alone(1)</div>
-                <div><img src={pin} alt='' /> House</div>
-              </div>
-            </div>
-            <div class='container p-0 c-post'>
-              <h3><b>Help with you are the dog I'm the cat we're in the second video</b></h3>
-              <div class='d-flex justify-content-between p-0 c-menu'>
-                <p>Science</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>date: 24/02/20</p>
-              </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Sapiente voluptate blanditiis soluta quis rem, minima odio
-                            aperiam qui pariatur. Praesentium veniam impedit sapiente
-                            atque et saepe quisquam, quae vero non!
-              </p>
-              <div class='d-flex justify-content-between'>
-                <div><img src={dollar} alt='' /> 30.000/h</div>
-                <div><img src={user} alt='' /> Alone(1)</div>
-                <div><img src={pin} alt='' /> House</div>
-              </div>
-            </div>
-            <div class='container p-0 c-post'>
-              <h3><b>Help with you are the dog I'm the cat we're in the second video</b></h3>
-              <div class='d-flex justify-content-between p-0 c-menu'>
-                <p>Science</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>date: 24/02/20</p>
-              </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Sapiente voluptate blanditiis soluta quis rem, minima odio
-                            aperiam qui pariatur. Praesentium veniam impedit sapiente
-                            atque et saepe quisquam, quae vero non!
-              </p>
-              <div class='d-flex justify-content-between'>
-                <div><img src={dollar} alt='' /> 30.000/h</div>
-                <div><img src={user} alt='' /> Alone(1)</div>
-                <div><img src={pin} alt='' /> House</div>
-              </div>
-            </div>
+            ))}
           </div>
 
 

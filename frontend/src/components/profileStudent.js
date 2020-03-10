@@ -12,6 +12,7 @@ import little_fifi from '../static/images/little_fifi.svg';
 import close from '../static/images/correct.svg';
 import correct from '../static/images/close.svg';
 import HeaderLogged from './headerLogged';
+import axios from 'axios';
 
 export default class profileStudent extends Component {
   logOut (e) {
@@ -23,6 +24,7 @@ export default class profileStudent extends Component {
   constructor () {
     super();
     this.state = {
+      student_id: '',
       first_name: '',
       last_name: '',
       contact: '',
@@ -30,23 +32,29 @@ export default class profileStudent extends Component {
       location: '',
       age: '',
       email: '',
-      education: ''
+      education: '',
+      posts: []
     };
   }
 
   componentDidMount () {
     const token = localStorage.studentToken;
     const decoded = jwt_decode(token);
-    this.setState({
-      first_name: decoded.first_name,
-      last_name: decoded.last_name,
-      contact: decoded.contact,
-      password: decoded.password,
-      location: decoded.location,
-      age: decoded.age,
-      email: decoded.email,
-      education: decoded.education
-    });
+    axios.get(`/api/posts/students/${decoded.student_id}`).then(response => response.data)
+    .then((data) => {
+      this.setState({
+        student_id: decoded.student_id,
+        first_name: decoded.first_name,
+        last_name: decoded.last_name,
+        contact: decoded.contact,
+        password: decoded.password,
+        location: decoded.location,
+        age: decoded.age,
+        email: decoded.email,
+        education: decoded.education,
+        posts: data.result
+      });
+    })
   }
 
   render () {
@@ -81,55 +89,20 @@ export default class profileStudent extends Component {
 
           <div class='col-7 c-cont'>
             <h3 class='not'>Classes you have posted</h3> <br /><br />
-
-            <div class='container p-0 c-post'>
-              <h3><b>Help with you are the dog I'm the cat we're in the second video</b></h3>
-              <div class='d-flex justify-content-between p-0 c-menu'>
-                <p>Science</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>date: 24/02/20</p>
+            {this.state.posts.map((post) => (
+              <div class='container p-0 c-post'>
+                <h3><b>{post.title}</b></h3>
+                <div class='d-flex justify-content-between p-0 c-menu'>
+                  <p>{post.category}</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>Date: {post.creation_date}</p>
+                </div>
+                <p>{post.description}</p>
+                <div class='d-flex justify-content-between'>
+                  <div><img src={dollar} alt='' /> {post.price}/h</div>
+                  <div><img src={user} alt='' /> {post.size}</div>
+                  <div><img src={pin} alt='' /> {post.location}</div>
+                </div>
               </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Sapiente voluptate blanditiis soluta quis rem, minima odio
-                            aperiam qui pariatur. Praesentium veniam impedit sapiente
-                            atque et saepe quisquam, quae vero non!
-              </p>
-              <div class='d-flex justify-content-between'>
-                <div><img src={dollar} alt='' /> 30.000/h</div>
-                <div><img src={user} alt='' /> Alone(1)</div>
-                <div><img src={pin} alt='' /> House</div>
-              </div>
-            </div>
-            <div class='container p-0 c-post'>
-              <h3><b>Help with you are the dog I'm the cat we're in the second video</b></h3>
-              <div class='d-flex justify-content-between p-0 c-menu'>
-                <p>Science</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>date: 24/02/20</p>
-              </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Sapiente voluptate blanditiis soluta quis rem, minima odio
-                            aperiam qui pariatur. Praesentium veniam impedit sapiente
-                            atque et saepe quisquam, quae vero non!
-              </p>
-              <div class='d-flex justify-content-between'>
-                <div><img src={dollar} alt='' /> 30.000/h</div>
-                <div><img src={user} alt='' /> Alone(1)</div>
-                <div><img src={pin} alt='' /> House</div>
-              </div>
-            </div>
-            <div class='container p-0 c-post'>
-              <h3><b>Help with you are the dog I'm the cat we're in the second video</b></h3>
-              <div class='d-flex justify-content-between p-0 c-menu'>
-                <p>Science</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>date: 24/02/20</p>
-              </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Sapiente voluptate blanditiis soluta quis rem, minima odio
-                            aperiam qui pariatur. Praesentium veniam impedit sapiente
-                            atque et saepe quisquam, quae vero non!
-              </p>
-              <div class='d-flex justify-content-between'>
-                <div><img src={dollar} alt='' /> 30.000/h</div>
-                <div><img src={user} alt='' /> Alone(1)</div>
-                <div><img src={pin} alt='' /> House</div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div class='col-2'>
