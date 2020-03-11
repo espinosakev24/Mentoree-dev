@@ -45,7 +45,7 @@ export default class PostClass extends Component {
       size: this.state.size,
       location: this.state.location
     };
-
+    window.open('/lobby', '_self');
     postClass(post).then(res => {
       console.log("I just posted a class!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
       this.props.history.push('\lobby');
@@ -190,7 +190,7 @@ export default class PostClass extends Component {
                         Cancel
             </button>
 
-              <button type='submit' class='btn btn-2' >
+              <button type='submit' class='btn btn-2'>
                           Post class
               </button>
               
