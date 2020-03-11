@@ -20,17 +20,17 @@ export default class AboutUs extends Component {
             <div class='col-4'>
               <img src={Cami} alt='' class='face-img' /> <br /> <br />
               <h5 class='display-5'><strong>Camilo Villegas</strong></h5>
-              <p class='text-dark'>Backend engineer</p>
+              <p class='text-dark'>Full-stack engineer</p>
             </div>
             <div class='col-4'>
               <img src={Fifi} alt='' class='face-img' /> <br /> <br />
               <h5 class='display-5'><strong>Fidel Caicedo</strong></h5>
-              <p class='text-dark'>Frontend engineer</p>
+              <p class='text-dark'>Devops engineer</p>
             </div>
             <div class='col-4'>
               <img src={Kevin} alt='' class='face-img' /> <br /> <br />
               <h5 class='display-5'><strong>Kevin Espinosa</strong></h5>
-              <p class='text-dark'>Full-stack engineer</p>
+              <p class='text-dark'>Frontend engineer</p>
             </div>
           </div>
         </div>
