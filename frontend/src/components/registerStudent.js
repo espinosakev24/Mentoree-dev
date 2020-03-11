@@ -57,7 +57,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='first_name'
-                placeholder='Enter first name'
+                placeholder='John'
                 value={this.state.first_name}
                 onChange={this.onChange}
                 id='fields'
@@ -69,7 +69,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='last_name'
-                placeholder='Enter Last name'
+                placeholder='Doe'
                 value={this.state.last_name}
                 onChange={this.onChange}
                 id='fields'
@@ -84,7 +84,7 @@ export default class RegisterStudent extends Component {
                 type='email'
                 className='form-control'
                 name='email'
-                placeholder='Enter Email'
+                placeholder='johndoe@mail.com'
                 value={this.state.email}
                 onChange={this.onChange}
                 id='fields'
@@ -97,7 +97,7 @@ export default class RegisterStudent extends Component {
                 type='password'
                 className='form-control'
                 name='password'
-                placeholder='Enter Password'
+                placeholder='**********'
                 value={this.state.password}
                 onChange={this.onChange}
                 id='fields'
@@ -111,7 +111,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='contact'
-                placeholder='Enter Contact'
+                placeholder='+57 314 245 7896'
                 value={this.state.contact}
                 onChange={this.onChange}
                 id='fields'
@@ -124,7 +124,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='education'
-                placeholder='Enter Education'
+                placeholder='Frontier High School'
                 value={this.state.education}
                 onChange={this.onChange}
                 id='fields'
@@ -139,7 +139,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='location'
-                placeholder='Enter Location'
+                placeholder='USA'
                 value={this.state.location}
                 onChange={this.onChange}
                 id='fields'
@@ -152,7 +152,7 @@ export default class RegisterStudent extends Component {
                 type='number'
                 className='form-control'
                 name='age'
-                placeholder='Enter Age'
+                placeholder='18'
                 value={this.state.age}
                 onChange={this.onChange}
                 id='fields'

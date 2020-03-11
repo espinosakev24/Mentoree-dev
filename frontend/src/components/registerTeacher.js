@@ -63,7 +63,7 @@ export default class RegisterTeacher extends Component {
                             <input type="text"
                             className="form-control"
                             name="first_name"
-                            placeholder="Enter first name"
+                            placeholder="Sandra"
                             value={this.state.first_name}
                             onChange={this.onChange}
                             id="fields"
@@ -74,7 +74,7 @@ export default class RegisterTeacher extends Component {
                             <input type="text"
                             className="form-control"
                             name="last_name"
-                            placeholder="Enter Last name"
+                            placeholder="Jones"
                             value={this.state.last_name}
                             onChange={this.onChange}
                             id="fields"
@@ -88,7 +88,7 @@ export default class RegisterTeacher extends Component {
                         <input type="email"
                         className="form-control"
                         name="email"
-                        placeholder="Enter Email"
+                        placeholder="sandrajones@mail.com"
                         value={this.state.email}
                         onChange={this.onChange}
                         id="fields"
@@ -100,7 +100,7 @@ export default class RegisterTeacher extends Component {
                         <input type="password"
                         className="form-control"
                         name="password"
-                        placeholder="Enter Password"
+                        placeholder="**********"
                         value={this.state.password}
                         onChange={this.onChange}
                         id="fields"
@@ -113,7 +113,7 @@ export default class RegisterTeacher extends Component {
                         <input type="text"
                         className="form-control"
                         name="contact"
-                        placeholder="Enter Contact"
+                        placeholder="+57 321 456 7890"
                         value={this.state.contact}
                         onChange={this.onChange}
                         id="fields"
@@ -125,7 +125,7 @@ export default class RegisterTeacher extends Component {
                         <input type="text"
                         className="form-control"
                         name="education"
-                        placeholder="Enter Education"
+                        placeholder="Self taught"
                         value={this.state.education}
                         onChange={this.onChange}
                         id="fields"
@@ -139,7 +139,7 @@ export default class RegisterTeacher extends Component {
                         <input type="text"
                         className="form-control"
                         name="location"
-                        placeholder="Enter Location"
+                        placeholder="USA"
                         value={this.state.location}
                         onChange={this.onChange}
                         id="fields"
@@ -151,7 +151,7 @@ export default class RegisterTeacher extends Component {
                         <input type="number"
                         className="form-control"
                         name="age"
-                        placeholder="Enter Age"
+                        placeholder="37"
                         value={this.state.age}
                         onChange={this.onChange}
                         id="fields"
@@ -165,7 +165,7 @@ export default class RegisterTeacher extends Component {
                       type='text'
                       className='form-control'
                       name='methodology'
-                      placeholder='Enter Methodology'
+                      placeholder='Expeditionary Learning'
                       value={this.state.methodology}
                       onChange={this.onChange}
                       id="fields"
@@ -178,7 +178,7 @@ export default class RegisterTeacher extends Component {
                       type='text'
                       className='form-control'
                       name='fields'
-                      placeholder='Enter Fields'
+                      placeholder='Marketing, Business analytics, Sales'
                       value={this.state.fields}
                       onChange={this.onChange}
                       id="fields"
@@ -193,7 +193,8 @@ export default class RegisterTeacher extends Component {
                       type='text'
                       className='form-control'
                       name='biography'
-                      placeholder='Enter Biography'
+                      placeholder='Hi! My name is Sandra Jones, Ive got 10 years of experience working as Business analyst and marketer at top companies like Adidas and Fox. Although I got no diploma on teaching, All my knowledge has been self-taught and I aspire to teach s
+                      you the best way to dive into business!'
                       value={this.state.biography}
                       onChange={this.onChange}
                       id="fields"

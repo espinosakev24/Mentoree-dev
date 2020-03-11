@@ -45,7 +45,7 @@ export default class LoginStudent extends Component {
               type='email'
               className='form-control'
               name='email'
-              placeholder='Enter Email'
+              placeholder='yourmail@mail.com'
               value={this.state.email}
               onChange={this.onChange}
               id='in'
@@ -56,7 +56,7 @@ export default class LoginStudent extends Component {
               type='password'
               className='form-control'
               name='password'
-              placeholder='Enter Password'
+              placeholder='**********'
               value={this.state.password}
               onChange={this.onChange}
               id='in'

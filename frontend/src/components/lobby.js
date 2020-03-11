@@ -50,9 +50,6 @@ export default class Lobby extends Component {
 
 
   postTeacherRequest = (pst_id, tch_id) => {
-    console.log("postTeacherReq - Post ID", pst_id);
-    console.log("postTeacherReq - Teacher ID", tch_id);
-
     axios.put(`/api/posts/${pst_id}`, {
       teacher_id: tch_id
     })

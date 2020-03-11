@@ -64,7 +64,7 @@ export default class PostClass extends Component {
                     type='text'
                     className='form-control'
                     name='title'
-                    placeholder='Enter title'
+                    placeholder='Cooking maestro needed!'
                     value={this.state.title}
                     onChange={this.onChange}
                     id="titlebox"
@@ -80,7 +80,7 @@ export default class PostClass extends Component {
                       type='text'
                       className='form-control'
                       name='category'
-                      placeholder='Enter category'
+                      placeholder='Wellness'
                       value={this.state.category}
                       onChange={this.onChange}
                     />
@@ -106,7 +106,7 @@ export default class PostClass extends Component {
                   type='text'
                   className='form-control'
                   name='description'
-                  placeholder='Enter Description'
+                  placeholder='Im looking for a cooking maestro to teach me the best ways and practices while in the kitchen. I really want to improve my cooking... My main goal is to make somthing like a cake att he end of the course!'
                   value={this.state.description}
                   onChange={this.onChange}
                   id="textarea"
@@ -125,7 +125,7 @@ export default class PostClass extends Component {
                   type='text'
                   className='form-control'
                   name='schedule'
-                  placeholder='Enter schedule'
+                  placeholder='Saturday, Sunday - 11:00am'
                   value={this.state.schedule}
                   onChange={this.onChange}
                   id="item"
@@ -140,7 +140,7 @@ export default class PostClass extends Component {
                   type='number'
                   className='form-control'
                   name='price'
-                  placeholder='Enter price'
+                  placeholder='15000'
                   value={this.state.price}
                   onChange={this.onChange}
                   id="price"
@@ -157,7 +157,7 @@ export default class PostClass extends Component {
                   type='number'
                   className='form-control'
                   name='size'
-                  placeholder='Enter size'
+                  placeholder='1'
                   value={this.state.size}
                   onChange={this.onChange}
                   id="item"
@@ -174,7 +174,7 @@ export default class PostClass extends Component {
                   type='text'
                   className='form-control'
                   name='location'
-                  placeholder='Enter location'
+                  placeholder='House'
                   value={this.state.location}
                   onChange={this.onChange}
                   id="item"

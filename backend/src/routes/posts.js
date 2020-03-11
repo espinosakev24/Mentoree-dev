@@ -8,9 +8,7 @@ router.route('/')
     const result = await pool.query('SELECT * FROM posts');
     const fullName = await Promise.all(result.map(async (name) => {
       const firstName = await pool.query('SELECT first_name FROM students WHERE student_id = ?', [name.student_id])
-      console.log(firstName[0].first_name);
       const lastName = await pool.query('SELECT last_name FROM students WHERE student_id = ?', [name.student_id])
-      console.log(lastName[0].last_name);
       return(firstName[0].first_name + ' ' + lastName[0].last_name);
     }));
 
@@ -69,9 +67,9 @@ router.route('/:id')
       await pool.query('DELETE FROM posts WHERE post_id = ?', [id]);
     } catch (e) {
       await pool.query('SET FOREIGN_KEY_CHECKS=0;');
+      await pool.query('UPDATE teachers set post_id = NULL WHERE post_id = ?;', [id]);
+      await pool.query('UPDATE students set post_id = NULL WHERE post_id = ?;', [id]);
       await pool.query('DELETE FROM posts WHERE post_id = ?', [id]);
-      await pool.query('UPDATE teachers set post_id = NULL WHERE post_id;', [id]);
-      await pool.query('UPDATE students set post_id = NULL WHERE post_id;', [id]);
       await pool.query('SET FOREIGN_KEY_CHECKS=1;');
     }
 
