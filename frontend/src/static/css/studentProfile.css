@@ -28,10 +28,7 @@
     font-size: .8rem;
     color: #333333;
 }
-.c-menu > p:first-child {
-    background-color: #9B51E0;
-    color: white;
-}
+
 .c-menu > p {
     display: flex;
     align-items: center;
@@ -40,4 +37,29 @@
 }
 .l-block-cont {
     margin-bottom: 3rem;
+}
+
+#Art{
+    color: white;
+    background-color:  #EB5757;
+}
+#Humanities {
+    background-color: #F2994A;
+    color: white;
+}
+#Languages {
+    background-color: #F2C94C;
+    color: white;
+}
+#Wellness {
+    background-color: #27AE60;
+    color: white;
+}
+#Technology {
+    background-color: #2F80ED;
+    color: white;
+}
+#Science {
+    background-color: #9B51E0;
+    color: white;
 }

@@ -6,6 +6,7 @@ import '../static/css/lobby.css'
 import dollar from '../static/images/dollar-symbol.svg';
 import user from '../static/images/user.svg';
 import pin from '../static/images/pin.svg';
+/*import $ from 'jquery';*/
 
 
 class Owner extends Component {
@@ -55,10 +56,9 @@ export default class Lobby extends Component {
     })
     .then(response => {
       console.log("Teacher suscribed!")
+      /*toggle();*/
     })
   }
-
-  
   render () {
     const isStudent = (
       <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
@@ -77,7 +77,7 @@ export default class Lobby extends Component {
           <div class='container col-5 pr-5' id="posts">
             <h3><b>{post.title}</b></h3>
             <div class='d-flex justify-content-between  c-menu'>
-          <p>{post.category}</p> <Owner ow={post.student_id}/> <p>date: date{/*{post.creation_date}*/}</p>
+          <p id={post.category}>{post.category}</p> <Owner ow={post.student_id}/> <p>date: date{/*{post.creation_date}*/}</p>
             </div>
             <p>
               {post.description} <br/>
@@ -111,7 +111,7 @@ export default class Lobby extends Component {
           <div class='container col-5 pr-5' id="posts">
             <h3><b>{post.title}</b></h3>
             <div class='d-flex justify-content-between  c-menu'>
-          <p>{post.category}</p> <Owner ow={post.student_id}/> <p>date: date{/*{post.creation_date}*/}</p>
+          <p id={post.category}>{post.category}</p> <Owner ow={post.student_id}/> <p>date: {post.creation_date}</p>
             </div>
             <p>
               {post.description} <br/>
@@ -122,7 +122,11 @@ export default class Lobby extends Component {
               <div><img src={user} alt='' /> Group: {post.size}</div>
               <div><img src={pin} alt='' /> {post.location}</div>
             </div>
-            <button onClick={this.postTeacherRequest.bind(this, post.post_id, this.state.teacher_id)}>Suscribe</button>
+            <div className="d-flex justify-content-center">
+              <button id="bt" class="nosuscribe boton" onClick={this.postTeacherRequest.bind(this, post.post_id, this.state.teacher_id)}>
+                Suscribe
+              </button>
+            </div>
           </div>
           ))}
         </div>
@@ -137,3 +141,28 @@ export default class Lobby extends Component {
     );
   }
 }
+/*
+function toggle() {
+  var element = document.querySelector("div.boton button");
+  if (element.className === 'nosuscribe') {
+    element.classList.remove('nosuscribe');
+    element.classList.add('suscribe');
+  }
+  else {
+    element.classList.remove('suscribe');
+    element.classList.add('nosuscribe');
+  }
+  console.log("helloooo");
+}
+function toggle () {
+  $('.boton').click(function () {
+    let classNam = $(this).attr('class').split(' ')[0];
+    if (classNam === 'nosuscribe') {
+      $(this).attr('class', 'suscribe');
+    }
+    else {
+      $(this).attr('class', 'nosuscribe');
+    }
+    return false;
+  })
+}*/

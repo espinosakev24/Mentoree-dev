@@ -32,5 +32,57 @@
 /*endof Fields styles*/
 
 #posts {
-    padding-bottom: 5%;
+    padding-bottom: 3%;
+}
+.suscribe {
+    border: none;
+    color: white;
+    background-color: #2F80ED;
+    border: 1px solid #2F80ED;
+    margin-top: .5rem;
+    border-radius: 2rem;
+    padding: .2rem 1rem;
+    opacity: 80%;
+}
+#bt {
+    z-index: 100;
+}
+.suscribe:after {
+    content: "d!";
+}
+.nosuscribe {
+    border: none;
+    background-color: white;
+    color: #2F80ED;
+    border: 1px solid #2F80ED;
+    margin-top: .5rem;
+    border-radius: 2rem;
+    padding: .2rem 1rem;
+}
+
+
+
+#Art{
+    color: white;
+    background-color:  #EB5757;
+}
+#Humanities {
+    background-color: #F2994A;
+    color: white;
+}
+#Languages {
+    background-color: #F2C94C;
+    color: white;
+}
+#Wellness {
+    background-color: #27AE60;
+    color: white;
+}
+#Technology {
+    background-color: #2F80ED;
+    color: white;
+}
+#Science {
+    background-color: #9B51E0;
+    color: white;
 }

@@ -106,7 +106,7 @@ export default class profileTeacher extends Component {
               <div class='container p-0 c-post'>
                 <h3><b>{post.title}</b></h3>
                 <div class='d-flex justify-content-between p-0 c-menu'>
-                  <p>{post.category}</p> <p>Posted by: SomeName</p> <p>Date: {post.creation_date}</p>
+                  <p id={post.category}>{post.category}</p> <p>Posted by: SomeName</p> <p>Date: {post.creation_date}</p>
                 </div>
                 <p>{post.description}</p>
                 <div class='d-flex justify-content-between'>
