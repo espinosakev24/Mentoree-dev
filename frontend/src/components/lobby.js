@@ -124,7 +124,7 @@ export default class Lobby extends Component {
             </div>
             <div className="d-flex justify-content-center">
               <button id="bt" class="nosuscribe boton" onClick={this.postTeacherRequest.bind(this, post.post_id, this.state.teacher_id)}>
-                Suscribe
+                Postule
               </button>
             </div>
           </div>

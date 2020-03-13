@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
-import profileImg from '../static/images/Kevin.svg';
+import profileImg from '../static/images/ph_user.svg';
 import candelar from '../static/images/candelar.svg';
 import equal from '../static/images/equal.svg';
 import dollar from '../static/images/dollar-symbol.svg';
@@ -70,7 +70,7 @@ export default class profileTeacher extends Component {
       <div class='container pl-10 pr-0 mt-5'>
         <div class='row'>
           <div class='col-3 d-flex flex-column align-items-center l-block'>
-            <img src={profileImg} width='150' alt='' /> <br />
+            <img src={profileImg} width='150' alt='' /> <br /><br />
             <h3><b>{this.state.first_name} {this.state.last_name}</b></h3>
             <p>{this.state.education}</p>
             <div class='row d-flex justify-content-between w-100'>
@@ -101,7 +101,9 @@ export default class profileTeacher extends Component {
           </div>
 
           <div class='col-9 c-cont'>
-          <h3 class='not'>Classes where you have applied</h3> <br /><br />
+          <h3 class='not'><b>Your bio</b></h3>
+          <p className="text-dark">{this.state.biography}</p><br />
+          <h3 class='not'>Classes where you have applied</h3> <br />
             {this.state.posts.map((post) => (
               <div class='container p-0 c-post'>
                 <h3><b>{post.title}</b></h3>
