@@ -14,7 +14,6 @@ import correct from '../static/images/close.svg';
 import HeaderLogged from './headerLogged';
 import axios from 'axios';
 
-
 export default class profileStudent extends Component {
   logOut (e) {
     e.preventDefault();
@@ -42,141 +41,141 @@ export default class profileStudent extends Component {
     const token = localStorage.studentToken;
     const decoded = jwt_decode(token);
     axios.get(`/api/posts/students/${decoded.student_id}`).then(response => response.data)
-    .then((data) => {
-      this.setState({
-        student_id: decoded.student_id,
-        first_name: decoded.first_name,
-        last_name: decoded.last_name,
-        contact: decoded.contact,
-        password: decoded.password,
-        location: decoded.location,
-        age: decoded.age,
-        email: decoded.email,
-        education: decoded.education,
-        posts: data.result
+      .then((data) => {
+        this.setState({
+          student_id: decoded.student_id,
+          first_name: decoded.first_name,
+          last_name: decoded.last_name,
+          contact: decoded.contact,
+          password: decoded.password,
+          location: decoded.location,
+          age: decoded.age,
+          email: decoded.email,
+          education: decoded.education,
+          posts: data.result
+        });
       });
-    })
   }
 
   render () {
     return (
       <div>
-      <HeaderLogged />
-      <div class='container pl-10 pr-0 mt-5'>
-        <div class='row'>
-          <div class='col-3 d-flex flex-column align-items-center l-block'>
-            <img src={profileImg} width='150' alt='' /> <br />
-            <h3><b>{this.state.first_name} {this.state.last_name}</b></h3>
-            <p>{this.state.education}</p> <br />
-            <div class='row d-flex justify-content-between w-100'>
-              <div class='col-6 d-flex p-0 justify-content-center'>
-                <img src={candelar} alt='' />&nbsp;&nbsp;{this.state.age}
-              </div>
-              <div class='col-6 d-flex p-0 justify-content-center'>
-                <img src={equal} alt='' />&nbsp;&nbsp;{this.state.location}
-              </div>
-            </div>
-            <br />
-            <div class='d-flex'>
-              <img src={at} alt='' />&nbsp;&nbsp;{this.state.email}
-            </div>
-            <br />
-            <div>
-              <img src={phone} alt='' /> +57 {this.state.contact}
-            </div>
-            <br /><br />
-            <a href='' onClick={this.logOut.bind(this)}>Logout</a>
-          </div>
-
-          <div class='col-7 c-cont'>
-            <h3 class='not'>Classes you have posted</h3> <br /><br />
-            {this.state.posts.map((post) => (
-              <div class='container p-0 c-post'>
-                <h3><b>{post.title}</b></h3>
-                <div class='d-flex justify-content-between p-0 c-menu'>
-                  <p id={post.category}>{post.category}</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>Date: {post.creation_date}</p>
+        <HeaderLogged />
+        <div class='container pl-10 pr-0 mt-5'>
+          <div class='row'>
+            <div class='col-3 d-flex flex-column align-items-center l-block'>
+              <img src={profileImg} width='150' alt='' /> <br />
+              <h3><b>{this.state.first_name} {this.state.last_name}</b></h3>
+              <p>{this.state.education}</p> <br />
+              <div class='row d-flex justify-content-between w-100'>
+                <div class='col-6 d-flex p-0 justify-content-center'>
+                  <img src={candelar} alt='' />&nbsp;&nbsp;{this.state.age}
                 </div>
-                <p>{post.description}</p>
-                <div class='d-flex justify-content-between'>
-                  <div><img src={dollar} alt='' /> {post.price}/h</div>
-                  <div><img src={user} alt='' /> {post.size}</div>
-                  <div><img src={pin} alt='' /> {post.location}</div>
+                <div class='col-6 d-flex p-0 justify-content-center'>
+                  <img src={equal} alt='' />&nbsp;&nbsp;{this.state.location}
                 </div>
               </div>
-            ))}
-          </div>
-
-          <div class='col-2'>
-            <p><b>Teachers</b></p>
-
-            <div class='row d-flex l-block-cont'>
-              <div class='col-5'>
-                <img src={little_fifi} alt='' />
+              <br />
+              <div class='d-flex'>
+                <img src={at} alt='' />&nbsp;&nbsp;{this.state.email}
               </div>
-              <div class='col-7'>
-                <h6>Fidel Caicedo</h6>
-                <div class='d-flex justify-content-around'>
-                  <img src={correct} alt='' />
-                  <img src={close} alt='' />
-                </div>
+              <br />
+              <div>
+                <img src={phone} alt='' /> +57 {this.state.contact}
               </div>
+              <br /><br />
+              <a href='' onClick={this.logOut.bind(this)}>Logout</a>
             </div>
 
-            <div class='row d-flex l-block-cont'>
-              <div class='col-5'>
-                <img src={little_fifi} alt='' />
-              </div>
-              <div class='col-7'>
-                <h6>Fidel Caicedo</h6>
-                <div class='d-flex justify-content-around'>
-                  <img src={correct} alt='' />
-                  <img src={close} alt='' />
+            <div class='col-7 c-cont'>
+              <h3 class='not'>Classes you have posted</h3> <br /><br />
+              {this.state.posts.map((post) => (
+                <div class='container p-0 c-post'>
+                  <h3><b>{post.title}</b></h3>
+                  <div class='d-flex justify-content-between p-0 c-menu'>
+                    <p id={post.category}>{post.category}</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>Date: {post.creation_date}</p>
+                  </div>
+                  <p>{post.description}</p>
+                  <div class='d-flex justify-content-between'>
+                    <div><img src={dollar} alt='' /> {post.price}/h</div>
+                    <div><img src={user} alt='' /> {post.size}</div>
+                    <div><img src={pin} alt='' /> {post.location}</div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
 
-            <div class='row d-flex l-block-cont'>
-              <div class='col-5'>
-                <img src={little_fifi} alt='' />
-              </div>
-              <div class='col-7'>
-                <h6>Fidel Caicedo</h6>
-                <div class='d-flex justify-content-around'>
-                  <img src={correct} alt='' />
-                  <img src={close} alt='' />
+            <div class='col-2'>
+              <p><b>Teachers</b></p>
+
+              <div class='row d-flex l-block-cont'>
+                <div class='col-5'>
+                  <img src={little_fifi} alt='' />
+                </div>
+                <div class='col-7'>
+                  <h6>Fidel Caicedo</h6>
+                  <div class='d-flex justify-content-around'>
+                    <img src={correct} alt='' />
+                    <img src={close} alt='' />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class='row d-flex l-block-cont'>
-              <div class='col-5'>
-                <img src={little_fifi} alt='' />
-              </div>
-              <div class='col-7'>
-                <h6>Fidel Caicedo</h6>
-                <div class='d-flex justify-content-around'>
-                  <img src={correct} alt='' />
-                  <img src={close} alt='' />
+              <div class='row d-flex l-block-cont'>
+                <div class='col-5'>
+                  <img src={little_fifi} alt='' />
+                </div>
+                <div class='col-7'>
+                  <h6>Fidel Caicedo</h6>
+                  <div class='d-flex justify-content-around'>
+                    <img src={correct} alt='' />
+                    <img src={close} alt='' />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class='row d-flex l-block-cont'>
-              <div class='col-5'>
-                <img src={little_fifi} alt='' />
-              </div>
-              <div class='col-7'>
-                <h6>Fidel Caicedo</h6>
-                <div class='d-flex justify-content-around'>
-                  <img src={correct} alt='' />
-                  <img src={close} alt='' />
+              <div class='row d-flex l-block-cont'>
+                <div class='col-5'>
+                  <img src={little_fifi} alt='' />
+                </div>
+                <div class='col-7'>
+                  <h6>Fidel Caicedo</h6>
+                  <div class='d-flex justify-content-around'>
+                    <img src={correct} alt='' />
+                    <img src={close} alt='' />
+                  </div>
                 </div>
               </div>
-            </div>
 
+              <div class='row d-flex l-block-cont'>
+                <div class='col-5'>
+                  <img src={little_fifi} alt='' />
+                </div>
+                <div class='col-7'>
+                  <h6>Fidel Caicedo</h6>
+                  <div class='d-flex justify-content-around'>
+                    <img src={correct} alt='' />
+                    <img src={close} alt='' />
+                  </div>
+                </div>
+              </div>
+
+              <div class='row d-flex l-block-cont'>
+                <div class='col-5'>
+                  <img src={little_fifi} alt='' />
+                </div>
+                <div class='col-7'>
+                  <h6>Fidel Caicedo</h6>
+                  <div class='d-flex justify-content-around'>
+                    <img src={correct} alt='' />
+                    <img src={close} alt='' />
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
       </div>
     );
   }

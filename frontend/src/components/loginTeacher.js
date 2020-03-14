@@ -8,7 +8,8 @@ export default class LoginTeacher extends Component {
     super();
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      errors: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -19,6 +20,15 @@ export default class LoginTeacher extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  validate = () => {
+    if (!this.state.email || !this.state.email) {
+      this.setState({ errors: "Please fill every field!" });
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   onSubmit (e) {
     e.preventDefault();
 
@@ -27,9 +37,19 @@ export default class LoginTeacher extends Component {
       password: this.state.password
     };
 
-    loginTeacher(teacher).then(res => {
-      this.props.history.push('\lobby');
-    });
+    const isValid = this.validate();
+    if (isValid) {
+      loginTeacher(teacher).then(res => {
+        if (res !== 200) { this.setState({ errors: "Incorrect email or password" }) }
+        else {
+          console.log('[Component] - Teacher logged in succesfully!');
+          this.props.history.push('\lobby');
+        }
+      })
+      .catch(e => {
+        console.log('[Component] - An error has ocurred while logging in a teacher...');
+      });
+    }
   }
 
   render () {
@@ -38,6 +58,7 @@ export default class LoginTeacher extends Component {
         <Header />
         <h1><strong>Log In</strong></h1><br />
         <form noValidate onSubmit={this.onSubmit} class='form-control h-100' id='form'>
+          {this.state.errors ? <div className="alert alert-danger" role="alert">{this.state.errors}</div>: null }
           <div class='form-group'>
             <input
               type='email'

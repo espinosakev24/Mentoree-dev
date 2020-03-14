@@ -39,15 +39,15 @@ router.route('/register')
                 res.json({ status: teacher.email + 'registered' });
               })
               .catch(err => {
-                res.send('error: ' + err);
+                res.status(400).json({ error: 'Failed to create teacher' });
               });
           });
         } else {
-          res.json({ error: 'User already exists' });
+          res.status(400).json({ error: 'Teacher already exist' });
         }
       })
       .catch(err => {
-        res.send('error: ' + err);
+        res.status(400).json({ error: 'Internal Teacher error' });
       });
   });
 

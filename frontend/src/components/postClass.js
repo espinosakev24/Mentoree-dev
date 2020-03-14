@@ -21,7 +21,7 @@ export default class PostClass extends Component {
       price: '',
       size: '',
       location: '',
-      errors: {}
+      errors: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -32,6 +32,22 @@ export default class PostClass extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  validate = () => {
+    if (!this.state.title ||
+      !this.state.description ||
+      !this.state.category ||
+      !this.state.schedule ||
+      !this.state.price ||
+      !this.state.size ||
+      !this.state.location) {
+      this.setState({ errors: "Please fill every field!" });
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  
   onSubmit (e) {
     e.preventDefault();
 
@@ -45,17 +61,27 @@ export default class PostClass extends Component {
       size: this.state.size,
       location: this.state.location
     };
-    window.open('/lobby', '_self');
-    postClass(post).then(res => {
-      console.log("I just posted a class!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-      this.props.history.push('\lobby');
-    });
+
+    const isValid = this.validate();
+    if (isValid) {
+      postClass(post).then(res => {
+        //window.open('/lobby', '_self');
+        console.log('[Component] - Post created succesfully!');
+        this.props.history.push('\lobby');
+      })
+      .catch(e => {
+        console.log('[Component] - An error has ocurred while creating a post...');
+      });
+    }
   }
+
+
   render () {
     return (
       <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
         <HeaderLogged />
         <form noValidate onSubmit={this.onSubmit}>
+          {this.state.errors ? <div className="alert alert-danger" role="alert">{this.state.errors}</div>: null }
           <div className="row d-flex">
             <div className="col-8">
               <h3><b>Title</b></h3>

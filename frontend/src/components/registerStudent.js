@@ -14,7 +14,7 @@ export default class RegisterStudent extends Component {
       age: '',
       email: '',
       education: '',
-      errors: {}
+      errors: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -23,6 +23,22 @@ export default class RegisterStudent extends Component {
 
   onChange (e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  validate = () => {
+    if (!this.state.first_name ||
+      !this.state.last_name ||
+      !this.state.contact ||
+      !this.state.password ||
+      !this.state.location ||
+      !this.state.age ||
+      !this.state.email ||
+      !this.state.education) {
+      this.setState({ errors: "Please fill every field!" });
+      return false;
+    } else {
+      return true;
+    }
   }
 
   onSubmit (e) {
@@ -39,17 +55,28 @@ export default class RegisterStudent extends Component {
       education: this.state.education
     };
 
-    registerStudent(student).then(res => {
-      this.props.history.push('\loginStudent');
-    });
+    const isValid = this.validate();
+    if (isValid) {
+      registerStudent(student).then(res => {
+        if (res !== 200) { this.setState({ errors: "Student already exists" }) }
+        else {
+          console.log('[Component] - Student created succesfully!');
+          this.props.history.push('\loginStudent');
+        }
+      })
+      .catch(e => {
+        console.log('[Component] - An error has ocurred while creating a student...');
+      });
   }
+}
 
   render () {
     return (
       <div class='container pl-10 pr-10 mt-5'>
         <Header />
-        <h3><strong>Register</strong></h3> <br />
+        <h3><strong>Register as a Student</strong></h3> <br />
         <form noValidate onSubmit={this.onSubmit} className='' id='main-form'>
+          {this.state.errors ? <div className="alert alert-danger" role="alert">{this.state.errors}</div>: null }
           <div className='row d-flex justify-content-between '>
             <div className='form-group col-6'>
               <label htmlFor='first_name' id='text'>First Name</label>

@@ -14,6 +14,10 @@ export const registerStudent = newStudent => {
     })
     .then(res => {
       console.log('Student: ' + newStudent.email + ' registered!');
+      return res.status;
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
 
@@ -26,7 +30,7 @@ export const loginStudent = student => {
     .then(res => {
       localStorage.setItem('studentToken', res.data);
       console.log('Student: ' + student.email + ' logged in!');
-      return res.data;
+      return res.status;
     })
     .catch(err => {
       console.log(err);
@@ -51,6 +55,11 @@ export const registerTeacher = newTeacher => {
     })
     .then(res => {
       console.log('Teacher: ' + newTeacher.email + ' registered!');
+      console.log(res.status);
+      return res.status;
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
 
@@ -63,7 +72,7 @@ export const loginTeacher = teacher => {
     .then(res => {
       localStorage.setItem('teacherToken', res.data);
       console.log('Teacher: ' + teacher.email + ' logged in!');
-      return res.data;
+      return res.status;
     })
     .catch(err => {
       console.log(err);

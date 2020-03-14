@@ -14,7 +14,6 @@ export const postClass = newPost => {
       location: newPost.location
     })
     .then(res => {
-      console.log('Post created!');
+      console.log('[Aux Component] - Post created succesfully!');
     });
 };
-
