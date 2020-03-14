@@ -54,7 +54,9 @@ export default class HeaderLogged extends Component {
     const isTeacher = (
       <ul className='navbar-nav text-center ml-auto small-phone nav-items'>
         <li className='nav-item active l-pad p'>
-          <a className='nav-link'>Notifications</a>
+          <a className='nav-link'>
+            <img src={notification} width="25" height="auto" alt=""/>
+          </a>
         </li>
         <Link to='/profileTeacher'>
           <li className='nav-item active last p'>

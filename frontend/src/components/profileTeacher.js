@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
-import profileImg from '../static/images/Kevin.svg';
+import profileImg from '../static/images/ph_user.svg';
 import candelar from '../static/images/candelar.svg';
 import equal from '../static/images/equal.svg';
 import dollar from '../static/images/dollar-symbol.svg';
@@ -66,20 +66,16 @@ export default class profileTeacher extends Component {
   render () {
     return (
       <div>
-        <HeaderLogged />
-        <div class='container pl-10 pr-0 mt-5'>
-          <div class='row'>
-            <div class='col-3 d-flex flex-column align-items-center l-block'>
-              <img src={profileImg} width='150' alt='' /> <br />
-              <h3><b>{this.state.first_name} {this.state.last_name}</b></h3>
-              <p>{this.state.education}</p>
-              <div class='row d-flex justify-content-between w-100'>
-                <div class='col-6 d-flex p-0 justify-content-center'>
-                  <img src={candelar} alt='' />&nbsp;&nbsp;{this.state.age}
-                </div>
-                <div class='col-6 d-flex p-0 justify-content-center'>
-                  <img src={equal} alt='' />&nbsp;&nbsp;{this.state.location}
-                </div>
+      <HeaderLogged />
+      <div class='container pl-10 pr-0 mt-5'>
+        <div class='row'>
+          <div class='col-3 d-flex flex-column align-items-center l-block'>
+            <img src={profileImg} width='150' alt='' /> <br /><br />
+            <h3><b>{this.state.first_name} {this.state.last_name}</b></h3>
+            <p>{this.state.education}</p>
+            <div class='row d-flex justify-content-between w-100'>
+              <div class='col-6 d-flex p-0 justify-content-center'>
+                <img src={candelar} alt='' />&nbsp;&nbsp;{this.state.age}
               </div>
               <br />
               <div class='d-flex'>
@@ -100,20 +96,15 @@ export default class profileTeacher extends Component {
               <a href='' onClick={this.logOut.bind(this)}>Logout</a>
             </div>
 
-            <div class='col-9 c-cont'>
-              <h3 class='not'>Classes where you have applied</h3> <br /><br />
-              {this.state.posts.map((post) => (
-                <div class='container p-0 c-post'>
-                  <h3><b>{post.title}</b></h3>
-                  <div class='d-flex justify-content-between p-0 c-menu'>
-                    <p id={post.category}>{post.category}</p> <p>Posted by: SomeName</p> <p>Date: {post.creation_date}</p>
-                  </div>
-                  <p>{post.description}</p>
-                  <div class='d-flex justify-content-between'>
-                    <div><img src={dollar} alt='' /> {post.price}/h</div>
-                    <div><img src={user} alt='' /> {post.size}</div>
-                    <div><img src={pin} alt='' /> {post.location}</div>
-                  </div>
+          <div class='col-9 c-cont'>
+          <h3 class='not'><b>Your bio</b></h3>
+          <p className="text-dark">{this.state.biography}</p><br />
+          <h3 class='not'>Classes where you have applied</h3> <br />
+            {this.state.posts.map((post) => (
+              <div class='container p-0 c-post'>
+                <h3><b>{post.title}</b></h3>
+                <div class='d-flex justify-content-between p-0 c-menu'>
+                  <p id={post.category}>{post.category}</p> <p>Posted by: SomeName</p> <p>Date: {post.creation_date}</p>
                 </div>
               ))}
             </div>
