@@ -97,20 +97,21 @@ export default class profileTeacher extends Component {
             </div>
 
           <div class='col-9 c-cont'>
-          <h3 class='not'><b>Your bio</b></h3>
-          <p className="text-dark">{this.state.biography}</p><br />
-          <h3 class='not'>Classes where you have applied</h3> <br />
-            {this.state.posts.map((post) => (
-              <div class='container p-0 c-post'>
-                <h3><b>{post.title}</b></h3>
-                <div class='d-flex justify-content-between p-0 c-menu'>
-                  <p id={post.category}>{post.category}</p> <p>Posted by: SomeName</p> <p>Date: {post.creation_date}</p>
+            <h3 class='not'><b>Your bio</b></h3>
+            <p className="text-dark">{this.state.biography}</p><br />
+            <h3 class='not'>Classes where you have applied</h3> <br />
+              {this.state.posts.map((post) => (
+                <div class='container p-0 c-post'>
+                  <h3><b>{post.title}</b></h3>
+                  <div class='d-flex justify-content-between p-0 c-menu'>
+                    <p id={post.category}>{post.category}</p> <p>Posted by: SomeName</p> <p>Date: {post.creation_date}</p>
+                  </div>
                 </div>
-              ))}
-            </div>
-
+              ))};
           </div>
         </div>
+      </div>
+      </div>
       </div>
     );
   }
