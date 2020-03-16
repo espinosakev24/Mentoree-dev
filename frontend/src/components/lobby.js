@@ -9,6 +9,8 @@ import pin from '../static/images/pin.svg';
 /*import $ from 'jquery';*/
 
 
+let cont = 0;
+
 class Owner extends Component {
 
   state = {
@@ -17,15 +19,15 @@ class Owner extends Component {
   }
   componentDidMount(){
     const url = `/api/students/${this.props.ow}`;
-    axios.get(url).then(response => response.data)
-    .then((data) => {
-      this.setState({ first_name: data.result[0].first_name, lastName: data.result[0].last_name })
-      console.log(`LOST POST SON DE ${this.state.firstName}`);
+    axios.get(url).then(response => {
+      this.setState({firstName: response.data.result[cont].first_name,
+      lastName: response.data.result[cont].last_name});
+      console.log(response.data.result[cont].first_name);
     });
   }
   
   render(){
-    return ( <p>Posted by: {this.getPostOwner}</p>)
+    return ( <p>Posted by: {this.state.firstName} {this.state.lastName}</p>)
   }
 }
 
