@@ -10,7 +10,7 @@ import pin from '../static/images/pin.svg';
 
 
 let cont = 0;
-
+var categoriesclicked = [];
 class Owner extends Component {
 
   state = {
@@ -61,6 +61,43 @@ export default class Lobby extends Component {
       /*toggle();*/
     })
   }
+  filterCategories = (ob) => {
+    let filtered = [];
+    if (typeof(ob) != "undefined") {
+      var element = document.getElementsByClassName(ob);
+      if (element) {
+        if (element[0].className.split(' ')[1] == 'clicked'){
+          element[0].classList.remove('clicked');
+          for(let n = 0; n < categoriesclicked.length; n++) {
+            console.log(categoriesclicked[n]);
+            console.log(ob);
+            if(categoriesclicked[n] === ob.split(' ')[0]) {
+              categoriesclicked.splice(n, 1);
+            }
+        }
+          this.setState({ state: this.state });
+          /*console.log(`this is the classname: ${ob}`);*/
+        }
+        else {
+          element[0].classList.add("clicked");
+          categoriesclicked.push(ob.split(' ')[0]);
+        }
+      }
+      /*console.log(`This is the list of categories: ${categoriesclicked}`);*/
+      this.setState({ state: this.state });
+    }
+    if (categoriesclicked.length === 0) {
+      return this.state.posts;
+    }
+    else {
+      this.state.posts.map((post) => {
+        if (categoriesclicked.includes(post.category)) {
+          filtered.push(post);
+        }
+      })
+      return filtered;
+    }
+  }
   render () {
     const isStudent = (
       <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
@@ -100,16 +137,16 @@ export default class Lobby extends Component {
       <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
         <HeaderLogged />
         <div className="row d-flex justify-content-between lobby-fields">
-          <div>Art</div>
-          <div>Humanities</div>
-          <div>Languages</div>
-          <div>Wellness</div>
-          <div>Technology</div>
-          <div>Science</div>
+          <div className="Art" onClick={ob => this.filterCategories(ob.target.className)}>Art</div>
+          <div className="Humanities" onClick={ob => this.filterCategories(ob.target.className)}>Humanities</div>
+          <div className="Languages" onClick={ob => this.filterCategories(ob.target.className)}>Languages</div>
+          <div className="Wellness" onClick={ob => this.filterCategories(ob.target.className)}>Wellness</div>
+          <div className="Technology" onClick={ob => this.filterCategories(ob.target.className)}>Technology</div>
+          <div className="Science" onClick={ob => this.filterCategories(ob.target.className)}>Science</div>
         </div>
         <br/><br/>
         <div className="row">
-          {this.state.posts.map((post) => (
+          {this.filterCategories().map((post) => (
           <div class='container col-5 pr-5' id="posts">
             <h3><b>{post.title}</b></h3>
             <div class='d-flex justify-content-between  c-menu'>
@@ -141,6 +178,13 @@ export default class Lobby extends Component {
         { localStorage.studentToken ? isStudent : isTeacher }
       </div>
     );
+  }
+}
+function removeItem(list, item) {
+  for(let n = 0; n < list.length; n++) {
+      if(list[n] === item) {
+          list.splice(n, 1);
+      }
   }
 }
 /*
