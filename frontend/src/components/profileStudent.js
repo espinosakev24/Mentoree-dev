@@ -14,6 +14,40 @@ import correct from '../static/images/close.svg';
 import HeaderLogged from './headerLogged';
 import axios from 'axios';
 
+class Teacher extends Component {
+
+  state = {
+    firstName: '',
+    lastName: '',
+    fields: '',
+    methodology: ''
+  }
+
+  componentDidMount(){
+    const url = `/api/teachers/${this.props.ti}`;
+    axios.get(url).then(response => {
+      this.setState({firstName: response.data.result[0].first_name,
+      lastName: response.data.result[0].last_name,
+      fields: response.data.result[0].fields,
+      methodology: response.data.result[0].methodology});
+    });
+  }
+  
+  render(){
+    return (
+    <div>
+      <p>Posted by: {this.state.firstName} {this.state.lastName}</p>
+      <p>Fields: {this.state.fields}</p>
+      <p>Methodology: {this.state.methodology}</p>
+      <div class='d-flex justify-content-around'>
+        <img src={correct} alt='' />
+        <img src={close} alt='' />
+      </div>
+    </div>
+    );
+  }
+}
+
 export default class profileStudent extends Component {
   logOut (e) {
     e.preventDefault();
@@ -58,6 +92,7 @@ export default class profileStudent extends Component {
   }
 
   render () {
+    console.log(this.state.posts[0]);
     return (
       <div>
         <HeaderLogged />
@@ -90,21 +125,28 @@ export default class profileStudent extends Component {
             <div class='col-7 c-cont'>
               <h3 class='not'>Classes you have posted</h3> <br /><br />
               {this.state.posts.map((post) => (
-                <div class='container p-0 c-post'>
-                  <h3><b>{post.title}</b></h3>
-                  <div class='d-flex justify-content-between p-0 c-menu'>
-                    <p id={post.category}>{post.category}</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>Date: {post.creation_date}</p>
+                <div>
+                  <div class='container p-0 c-post'>
+                    <h3><b>{post.title}</b></h3>
+                    <div class='d-flex justify-content-between p-0 c-menu'>
+                      <p id={post.category}>{post.category}</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>Date: {post.creation_date}</p>
+                    </div>
+                    <p>{post.description}</p>
+                    <div class='d-flex justify-content-between'>
+                      <div><img src={dollar} alt='' /> {post.price}/h</div>
+                      <div><img src={user} alt='' /> {post.size}</div>
+                      <div><img src={pin} alt='' /> {post.location}</div>
+                    </div>
                   </div>
-                  <p>{post.description}</p>
-                  <div class='d-flex justify-content-between'>
-                    <div><img src={dollar} alt='' /> {post.price}/h</div>
-                    <div><img src={user} alt='' /> {post.size}</div>
-                    <div><img src={pin} alt='' /> {post.location}</div>
+                  <div>
+                    <p><b>Teachers</b></p>
+                    <p> { post.teacher_id ? <Teacher ti={post.teacher_id}/>: `No teacher postuled yet!` } </p>
                   </div>
                 </div>
               ))}
             </div>
 
+{/*
             <div class='col-2'>
               <p><b>Teachers</b></p>
 
@@ -172,8 +214,8 @@ export default class profileStudent extends Component {
                   </div>
                 </div>
               </div>
-
             </div>
+*/}
           </div>
         </div>
       </div>
