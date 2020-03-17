@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import Modal from 'react-modal';
 import jwt_decode from 'jwt-decode';
 import profileImg from '../static/images/Kevin.svg';
 import candelar from '../static/images/candelar.svg';
@@ -14,31 +15,71 @@ import correct from '../static/images/close.svg';
 import HeaderLogged from './headerLogged';
 import axios from 'axios';
 
+
+
 class Teacher extends Component {
 
   state = {
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
+    contact: '',
+    location: '',
+    age: '',
+    email: '',
+    education: '',
+    biography: '',
     fields: '',
-    methodology: ''
+    methodology: '',
+    reviews: '',
+    opened: false
   }
 
   componentDidMount(){
     const url = `/api/teachers/${this.props.ti}`;
     axios.get(url).then(response => {
-      this.setState({firstName: response.data.result[0].first_name,
-      lastName: response.data.result[0].last_name,
-      fields: response.data.result[0].fields,
-      methodology: response.data.result[0].methodology});
+      this.setState({
+        first_name: response.data.result[0].first_name,
+        last_name: response.data.result[0].last_name,
+        contact: response.data.result[0].contact,
+        location: response.data.result[0].location,
+        age: response.data.result[0].age,
+        email: response.data.result[0].email,
+        education: response.data.result[0].education,
+        biography: response.data.result[0].biography,
+        fields: response.data.result[0].fields,
+        methodology: response.data.result[0].methodology,
+        reviews: response.data.result[0].reviews});
     });
   }
-  
+
+  onOpen = () => {
+    this.setState({opened: true});
+  }
+
+  onClose = () => {
+    this.setState({opened: false});
+  }
+
   render(){
     return (
     <div>
-      <p>Posted by: {this.state.firstName} {this.state.lastName}</p>
-      <p>Fields: {this.state.fields}</p>
-      <p>Methodology: {this.state.methodology}</p>
+      <Modal isOpen = {this.state.opened}>
+        <p>{this.state.first_name} {this.state.last_name}</p>
+        <p>{this.state.contact}</p>
+        <p>{this.state.location}</p>
+        <p>{this.state.age}</p>
+        <p>{this.state.email}</p>
+        <p>{this.state.education}</p>
+        <p>{this.state.biography}</p>
+        <p>{this.state.fields}</p>
+        <p>{this.state.methodology}</p>
+        <p>{this.state.reviews}</p>
+        <button onClick={this.onClose}>Close</button>
+      </Modal>
+      <p>{this.state.first_name} {this.state.last_name}</p>
+      <p>{this.state.fields}</p>
+      <p>{this.state.methodology}</p>
+      <button onClick={this.onOpen}>Click to see full profile!</button>
       <div class='d-flex justify-content-around'>
         <img src={correct} alt='' />
         <img src={close} alt='' />
