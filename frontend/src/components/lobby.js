@@ -61,6 +61,16 @@ export default class Lobby extends Component {
       /*toggle();*/
     })
   }
+  changeDateFormat = (date) => {
+    let newDate = '';
+    let tempDate = []
+    let day = ''
+
+    tempDate = date.split('-');
+    day = tempDate[2].split('T')[0];
+    newDate = `${day}/${tempDate[1]}/${tempDate[0]} `
+    return(newDate);
+  }
   filterCategories = (ob) => {
     let filtered = [];
     if (typeof(ob) != "undefined") {
@@ -75,7 +85,6 @@ export default class Lobby extends Component {
               categoriesclicked.splice(n, 1);
             }
         }
-          this.setState({ state: this.state });
           /*console.log(`this is the classname: ${ob}`);*/
         }
         else {
@@ -103,20 +112,20 @@ export default class Lobby extends Component {
       <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
         <HeaderLogged />
         <div className="row d-flex justify-content-between lobby-fields">
-          <div>Art</div>
-          <div>Humanities</div>
-          <div>Languages</div>
-          <div>Wellness</div>
-          <div>Technology</div>
-          <div>Science</div>
+          <div className="Art" onClick={ob => this.filterCategories(ob.target.className)}>Art</div>
+          <div className="Humanities" onClick={ob => this.filterCategories(ob.target.className)}>Humanities</div>
+          <div className="Languages" onClick={ob => this.filterCategories(ob.target.className)}>Languages</div>
+          <div className="Wellness" onClick={ob => this.filterCategories(ob.target.className)}>Wellness</div>
+          <div className="Technology" onClick={ob => this.filterCategories(ob.target.className)}>Technology</div>
+          <div className="Science" onClick={ob => this.filterCategories(ob.target.className)}>Science</div>
         </div>
         <br/><br/>
         <div className="row">
-          {this.state.posts.map((post) => (
+          {this.filterCategories().map((post) => (
           <div class='container col-5 pr-5' id="posts">
             <h3><b>{post.title}</b></h3>
             <div class='d-flex justify-content-between  c-menu'>
-          <p id={post.category}>{post.category}</p> <Owner ow={post.student_id}/> <p>date: date{/*{post.creation_date}*/}</p>
+          <p id={post.category}>{post.category}</p> <Owner ow={post.student_id}/> <p>{this.changeDateFormat(post.creation_date)}</p>
             </div>
             <p>
               {post.description} <br/>
@@ -150,7 +159,7 @@ export default class Lobby extends Component {
           <div class='container col-5 pr-5' id="posts">
             <h3><b>{post.title}</b></h3>
             <div class='d-flex justify-content-between  c-menu'>
-          <p id={post.category}>{post.category}</p> <Owner ow={post.student_id}/> <p>date: {post.creation_date}</p>
+          <p id={post.category}>{post.category}</p> <Owner ow={post.student_id}/> <p>{this.changeDateFormat(post.creation_date)}</p>
             </div>
             <p>
               {post.description} <br/>
