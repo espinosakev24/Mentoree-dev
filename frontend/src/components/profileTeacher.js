@@ -11,6 +11,7 @@ import phone from '../static/images/phone.svg';
 import book from '../static/images/book.svg';
 import HeaderLogged from './headerLogged';
 import axios from 'axios';
+import '../static/css/modal.css'
 
 class Student extends Component {
 
@@ -84,7 +85,16 @@ export default class profileTeacher extends Component {
         });
       });
   }
+  changeDateFormat = (date) => {
+    let newDate = '';
+    let tempDate = []
+    let day = ''
 
+    tempDate = date.split('-');
+    day = tempDate[2].split('T')[0];
+    newDate = `${day}/${tempDate[1]}/${tempDate[0]} `
+    return(newDate);
+  }
   render () {
     return (
       <div>
@@ -131,7 +141,8 @@ export default class profileTeacher extends Component {
                   <h3><b>{post.title}</b></h3>
                   <p>{post.description}</p>
                   <div class='d-flex justify-content-between p-0 c-menu'>
-                    <p id={post.category}>{post.category}</p> <Student si={post.student_id}/> <p>Date: {post.creation_date}</p>
+                    <p id={post.category}>{post.category}</p> <Student si={post.student_id}/>
+                    <p>{this.changeDateFormat(post.creation_date)}</p>
                   </div>
                   <div class='d-flex justify-content-between'>
                     <div><img src={dollar} alt='' /> {post.price}/h</div>

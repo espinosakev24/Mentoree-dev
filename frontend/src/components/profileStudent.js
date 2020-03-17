@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import Modal from 'react-modal';
 import jwt_decode from 'jwt-decode';
-import profileImg from '../static/images/Kevin.svg';
+import profileImg from '../static/images/ph_user.svg';
 import candelar from '../static/images/candelar.svg';
 import equal from '../static/images/equal.svg';
 import dollar from '../static/images/dollar-symbol.svg';
@@ -78,8 +78,8 @@ class Teacher extends Component {
       </Modal>
       <p>{this.state.first_name} {this.state.last_name}</p>
       <p>{this.state.fields}</p>
-      <p>{this.state.methodology}</p>
-      <button onClick={this.onOpen}>Click to see full profile!</button>
+      {/*<p>{this.state.methodology}</p>*/}
+      <button onClick={this.onOpen} >Click to see full profile!</button>
       <div class='d-flex justify-content-around'>
         <img src={correct} alt='' />
         <img src={close} alt='' />
@@ -131,6 +131,16 @@ export default class profileStudent extends Component {
         });
       });
   }
+  changeDateFormat = (date) => {
+    let newDate = '';
+    let tempDate = []
+    let day = ''
+
+    tempDate = date.split('-');
+    day = tempDate[2].split('T')[0];
+    newDate = `${day}/${tempDate[1]}/${tempDate[0]} `
+    return(newDate);
+  }
 
   render () {
     console.log(this.state.posts[0]);
@@ -163,26 +173,38 @@ export default class profileStudent extends Component {
               <a href='' onClick={this.logOut.bind(this)}>Logout</a>
             </div>
 
-            <div class='col-7 c-cont'>
+            <div class='col-9 c-cont'>
               <h3 class='not'>Classes you have posted</h3> <br /><br />
               {this.state.posts.map((post) => (
-                <div>
-                  <div class='container p-0 c-post'>
-                    <h3><b>{post.title}</b></h3>
-                    <div class='d-flex justify-content-between p-0 c-menu'>
-                      <p id={post.category}>{post.category}</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>Date: {post.creation_date}</p>
+                <div className="row">
+
+                  <div className="col-8">
+
+                    <div class='container p-0 c-post'>
+                      <h3><b>{post.title}</b></h3>
+                      <div class='d-flex justify-content-between p-0 c-menu'>
+                        <p id={post.category}>{post.category}</p> <p>Posted by: {this.state.first_name} {this.state.last_name}</p> <p>
+                          {this.changeDateFormat(post.creation_date)}</p>
+                      </div>
+                      <p>{post.description}</p>
+                      <div class='d-flex justify-content-between'>
+                        <div><img src={dollar} alt='' /> {post.price}/h</div>
+                        <div><img src={user} alt='' /> {post.size}</div>
+                        <div><img src={pin} alt='' /> {post.location}</div>
+                      </div>
                     </div>
-                    <p>{post.description}</p>
-                    <div class='d-flex justify-content-between'>
-                      <div><img src={dollar} alt='' /> {post.price}/h</div>
-                      <div><img src={user} alt='' /> {post.size}</div>
-                      <div><img src={pin} alt='' /> {post.location}</div>
+
+                  </div>
+
+                  <div className="col-4">
+                    <div className="d-flex flex-column align-items-center pt-3">
+                      <p className="not"><b>Teachers</b></p>
+                      <p> { post.teacher_id ? <Teacher ti={post.teacher_id}/>: `No teacher postuled yet!` } </p>
                     </div>
                   </div>
-                  <div>
-                    <p><b>Teachers</b></p>
-                    <p> { post.teacher_id ? <Teacher ti={post.teacher_id}/>: `No teacher postuled yet!` } </p>
-                  </div>
+
+
+
                 </div>
               ))}
             </div>
