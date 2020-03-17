@@ -12,6 +12,28 @@ import book from '../static/images/book.svg';
 import HeaderLogged from './headerLogged';
 import axios from 'axios';
 
+class Student extends Component {
+
+  state = {
+    firstName: '',
+    lastName: ''
+  }
+
+  componentDidMount(){
+    const url = `/api/students/${this.props.si}`;
+    axios.get(url).then(response => {
+      this.setState({firstName: response.data.result[0].first_name,
+      lastName: response.data.result[0].last_name});
+    });
+  }
+  
+  render(){
+    return (
+      <p>Posted by: {this.state.firstName} {this.state.lastName}</p>
+    );
+  }
+}
+
 export default class profileTeacher extends Component {
   logOut (e) {
     e.preventDefault();
@@ -109,7 +131,7 @@ export default class profileTeacher extends Component {
                   <h3><b>{post.title}</b></h3>
                   <p>{post.description}</p>
                   <div class='d-flex justify-content-between p-0 c-menu'>
-                    <p id={post.category}>{post.category}</p> <p>Posted by: SomeName</p> <p>Date: {post.creation_date}</p>
+                    <p id={post.category}>{post.category}</p> <Student si={post.student_id}/> <p>Date: {post.creation_date}</p>
                   </div>
                   <div class='d-flex justify-content-between'>
                     <div><img src={dollar} alt='' /> {post.price}/h</div>
