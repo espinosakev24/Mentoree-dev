@@ -73,29 +73,33 @@ export default class profileTeacher extends Component {
             <img src={profileImg} width='150' alt='' /> <br /><br />
             <h3><b>{this.state.first_name} {this.state.last_name}</b></h3>
             <p>{this.state.education}</p>
-            <div class='row d-flex justify-content-between w-100'>
-              <div class='col-6 d-flex p-0 justify-content-center'>
-                <img src={candelar} alt='' />&nbsp;&nbsp;{this.state.age}
+            <div class='row d-flex justify-content-center w-100'>
+              <div class='col-6 d-flex p-0 justify-content-between'>
+                <div class='col-6 d-flex p-0'>
+                  <img src={candelar} alt='' />&nbsp;&nbsp;{this.state.age}
+                </div>
+                <div class='col-6 d-flex p-0 pb-3'>
+                  <img src={equal} alt='' />&nbsp;&nbsp;{this.state.location}
+                </div>
               </div>
               <br />
-              <div class='d-flex'>
+              <div class='d-flex justify-content-center align-itmes-center pb-3'>
                 <img src={at} alt='' />&nbsp;&nbsp;{this.state.email}
               </div>
               <br />
-              <div>
+              <div className="pb-3">
                 <img src={phone} alt='' /> +57 {this.state.contact}
               </div> <br />
               <div>
                 <img src={book} /> {this.state.methodology}
               </div>
-              <div>
+              <div className="pb-3">
                 <div className='fields-col'>{this.state.fields}</div>
-                <div className='fields-col' />
-                <div className='fields-col' />
               </div>
               <a href='' onClick={this.logOut.bind(this)}>Logout</a>
             </div>
 
+        </div>
           <div class='col-9 c-cont'>
             <h3 class='not'><b>Your bio</b></h3>
             <p className="text-dark">{this.state.biography}</p><br />
@@ -103,13 +107,18 @@ export default class profileTeacher extends Component {
               {this.state.posts.map((post) => (
                 <div class='container p-0 c-post'>
                   <h3><b>{post.title}</b></h3>
+                  <p>{post.description}</p>
                   <div class='d-flex justify-content-between p-0 c-menu'>
                     <p id={post.category}>{post.category}</p> <p>Posted by: SomeName</p> <p>Date: {post.creation_date}</p>
+                  </div>
+                  <div class='d-flex justify-content-between'>
+                    <div><img src={dollar} alt='' /> {post.price}/h</div>
+                    <div><img src={user} alt='' /> {post.size}</div>
+                    <div><img src={pin} alt='' /> {post.location}</div>
                   </div>
                 </div>
               ))};
           </div>
-        </div>
       </div>
       </div>
       </div>
