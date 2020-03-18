@@ -14,6 +14,7 @@ import close from '../static/images/correct.svg';
 import correct from '../static/images/close.svg';
 import HeaderLogged from './headerLogged';
 import axios from 'axios';
+import '../static/css/modal.css'
 
 
 
@@ -63,28 +64,43 @@ class Teacher extends Component {
   render(){
     return (
     <div>
-      <Modal isOpen = {this.state.opened}>
-        <p>{this.state.first_name} {this.state.last_name}</p>
-        <p>{this.state.contact}</p>
-        <p>{this.state.location}</p>
-        <p>{this.state.age}</p>
-        <p>{this.state.email}</p>
-        <p>{this.state.education}</p>
-        <p>{this.state.biography}</p>
-        <p>{this.state.fields}</p>
-        <p>{this.state.methodology}</p>
-        <p>{this.state.reviews}</p>
-        <button onClick={this.onClose}>Close</button>
-      </Modal>
-      <p>{this.state.first_name} {this.state.last_name}</p>
-      <p>{this.state.fields}</p>
-      {/*<p>{this.state.methodology}</p>*/}
-      <button onClick={this.onOpen} >Click to see full profile!</button>
-      <div class='d-flex justify-content-around'>
-        <img src={correct} alt='' />
-        <img src={close} alt='' />
+        <Modal isOpen = {this.state.opened} id="modal">
+          <p id="#text-mod">{this.state.first_name} {this.state.last_name}</p>
+          <hr />
+          <p>{this.state.contact}</p>
+          <hr />
+          <p>{this.state.location}</p>
+          <hr />
+          <p>{this.state.age}</p>
+          <hr />
+          <p>{this.state.email}</p>
+          <hr />
+          <p>{this.state.education}</p>
+          <hr />
+          <p>{this.state.biography}</p>
+          <hr />
+          <p>{this.state.fields}</p>
+          <hr />
+          <p>{this.state.methodology}</p>
+          <hr />
+          <p>{this.state.reviews}</p>
+          <hr />
+          <button onClick={this.onClose} className="align-self-center">Close</button>
+        </Modal>
+        <div className="pre-modal-cont">
+          <div id="pre-modal-text"><b>{this.state.first_name} {this.state.last_name}</b></div>
+          <div id="pre-modal-text">Fields: <b>{this.state.fields}</b></div>
+          {/*<p>{this.state.methodology}</p>*/}
+          <button onClick={this.onOpen} className="full-profile">
+            Click to see full profile!
+          </button>
+          <div class=''>
+            <img src={correct} alt='' />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img src={close} alt='' />
+          </div>
+        </div>
       </div>
-    </div>
     );
   }
 }
