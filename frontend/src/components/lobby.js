@@ -6,7 +6,6 @@ import '../static/css/lobby.css'
 import dollar from '../static/images/dollar-symbol.svg';
 import user from '../static/images/user.svg';
 import pin from '../static/images/pin.svg';
-/*import $ from 'jquery';*/
 
 
 let cont = 0;
@@ -30,6 +29,7 @@ class Owner extends Component {
     return ( <p>Posted by: {this.state.firstName} {this.state.lastName}</p>)
   }
 }
+
 
 export default class Lobby extends Component {
 
@@ -58,9 +58,18 @@ export default class Lobby extends Component {
     })
     .then(response => {
       console.log("Teacher suscribed!")
-      /*toggle();*/
     })
   }
+
+  unpostTeacherRequest = (pst_id) => {
+    axios.put(`/api/posts/${pst_id}`, {
+      teacher_id: null
+    })
+    .then(response => {
+      console.log("Teacher unsuscribed!")
+    })
+  }
+
   changeDateFormat = (date) => {
     let newDate = '';
     let tempDate = []
@@ -71,6 +80,7 @@ export default class Lobby extends Component {
     newDate = `${day}/${tempDate[1]}/${tempDate[0]} `
     return(newDate);
   }
+
   filterCategories = (ob) => {
     let filtered = [];
     if (typeof(ob) != "undefined") {
@@ -107,6 +117,8 @@ export default class Lobby extends Component {
       return filtered;
     }
   }
+
+
   render () {
     const isStudent = (
       <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
@@ -171,9 +183,13 @@ export default class Lobby extends Component {
               <div><img src={pin} alt='' /> {post.location}</div>
             </div>
             <div className="d-flex justify-content-center">
-              <button id="bt" class="nosuscribe boton" onClick={this.postTeacherRequest.bind(this, post.post_id, this.state.teacher_id)}>
+              { post.teacher_id ? (post.teacher_id === this.state.teacher_id ? 
+              <button id="bt" class="unsuscribe boton" onClick={this.unpostTeacherRequest.bind(this, post.post_id)}>
+                Cancel postulation
+              </button> : `This class has been already taken!`) : 
+              <button id="bt" class="suscribe boton" onClick={this.postTeacherRequest.bind(this, post.post_id, this.state.teacher_id)}>
                 Postule
-              </button>
+              </button> }
             </div>
           </div>
           ))}
@@ -189,6 +205,7 @@ export default class Lobby extends Component {
     );
   }
 }
+
 function removeItem(list, item) {
   for(let n = 0; n < list.length; n++) {
       if(list[n] === item) {
@@ -196,28 +213,3 @@ function removeItem(list, item) {
       }
   }
 }
-/*
-function toggle() {
-  var element = document.querySelector("div.boton button");
-  if (element.className === 'nosuscribe') {
-    element.classList.remove('nosuscribe');
-    element.classList.add('suscribe');
-  }
-  else {
-    element.classList.remove('suscribe');
-    element.classList.add('nosuscribe');
-  }
-  console.log("helloooo");
-}
-function toggle () {
-  $('.boton').click(function () {
-    let classNam = $(this).attr('class').split(' ')[0];
-    if (classNam === 'nosuscribe') {
-      $(this).attr('class', 'suscribe');
-    }
-    else {
-      $(this).attr('class', 'nosuscribe');
-    }
-    return false;
-  })
-}*/

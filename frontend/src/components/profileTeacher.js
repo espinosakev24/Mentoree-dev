@@ -135,7 +135,7 @@ export default class profileTeacher extends Component {
           <div class='col-9 c-cont'>
             <h3 class='not'><b>Your bio</b></h3>
             <p className="text-dark">{this.state.biography}</p><br />
-            <h3 class='not'>Classes where you have applied</h3> <br />
+            <h3 class='not'>Classes where you have postulated</h3> <br />
               {this.state.posts.map((post) => (
                 <div class='container p-0 c-post'>
                   <h3><b>{post.title}</b></h3>
