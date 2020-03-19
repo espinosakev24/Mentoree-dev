@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { registerTeacher } from './registerLogin';
 import Header from './header';
-
+/** This component handles all the register Teacher handles information**/
 export default class RegisterTeacher extends Component {
   constructor () {
     super();
@@ -63,13 +63,13 @@ export default class RegisterTeacher extends Component {
       fields: this.state.fields,
       methodology: this.state.methodology
     };
-
+    /** Validates that the student is not a copy */
     const isValid = this.validate();
     if(isValid) {
       registerTeacher(teacher).then(res => {
         if (res !== 200) { this.setState({ errors: "Teacher already exists" }) }
         else {
-          console.log('[Component] - Teacher created succesfully!');
+          /**console.log('[Component] - Teacher created succesfully!');*/
           this.props.history.push('\loginTeacher');
         }
       })
@@ -80,6 +80,7 @@ export default class RegisterTeacher extends Component {
 }
 
   render () {
+    /** Returns the loaded component to visualize the student**/
     return (
       <div class="container pl-10 pr-10 mt-5">
                 <Header />

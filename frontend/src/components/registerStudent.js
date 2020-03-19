@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { registerStudent } from './registerLogin';
 import Header from './header';
-
+/** This component handles all the register student handles information**/
 export default class RegisterStudent extends Component {
   constructor () {
     super();
@@ -54,23 +54,24 @@ export default class RegisterStudent extends Component {
       email: this.state.email,
       education: this.state.education
     };
-
+/** Validates that the student is not a copy */
     const isValid = this.validate();
     if (isValid) {
       registerStudent(student).then(res => {
         if (res !== 200) { this.setState({ errors: "Student already exists" }) }
         else {
-          console.log('[Component] - Student created succesfully!');
+          /*console.log('[Component] - Student created succesfully!');*/
           this.props.history.push('\loginStudent');
         }
       })
       .catch(e => {
-        console.log('[Component] - An error has ocurred while creating a student...');
+        /*console.log('[Component] - An error has ocurred while creating a student...');*/
       });
   }
 }
 
   render () {
+    /** Returns the loaded component to visualize the student**/
     return (
       <div class='container pl-10 pr-10 mt-5'>
         <Header />

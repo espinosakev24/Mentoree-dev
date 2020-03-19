@@ -14,7 +14,7 @@ export default class HeaderLogged extends Component {
       last_name: ''
     };
   }
-
+  /** Grabs the token of a logged in sessions and then it changes the header of one of the user.*/
   componentDidMount () {
     let token;
     if (localStorage.studentToken) {
@@ -31,6 +31,7 @@ export default class HeaderLogged extends Component {
   }
 
   render () {
+    /** Returns the Header with all user-related information. */
     const isStudent = (
       <ul class='navbar-nav text-center ml-auto small-phone nav-items'>
         <li class='nav-item active first'>

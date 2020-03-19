@@ -17,7 +17,7 @@ import axios from 'axios';
 import '../static/css/modal.css'
 
 
-
+/** Loads all the teacher that subscribe to your posts **/
 class Teacher extends Component {
 
   state = {
@@ -34,7 +34,7 @@ class Teacher extends Component {
     reviews: '',
     opened: false
   }
-
+/** Calls the api and gets the teacher information **/
   componentDidMount(){
     const url = `/api/teachers/${this.props.ti}`;
     axios.get(url).then(response => {
@@ -90,7 +90,6 @@ class Teacher extends Component {
         <div className="pre-modal-cont">
           <div id="pre-modal-text"><b>{this.state.first_name} {this.state.last_name}</b></div>
           <div id="pre-modal-text">Fields: <b>{this.state.fields}</b></div>
-          {/*<p>{this.state.methodology}</p>*/}
           <button onClick={this.onOpen} className="full-profile">
             Click to see full profile!
           </button>
@@ -104,7 +103,7 @@ class Teacher extends Component {
     );
   }
 }
-
+/** Loads the Student Profile **/
 export default class profileStudent extends Component {
   logOut (e) {
     e.preventDefault();
@@ -127,7 +126,7 @@ export default class profileStudent extends Component {
       posts: []
     };
   }
-
+ /** Decodes the Student information so it can be correctly served **/
   componentDidMount () {
     const token = localStorage.studentToken;
     const decoded = jwt_decode(token);
@@ -159,7 +158,7 @@ export default class profileStudent extends Component {
   }
 
   render () {
-    console.log(this.state.posts[0]);
+    /*console.log(this.state.posts[0]);*/
     return (
       <div>
         <HeaderLogged />
@@ -224,77 +223,6 @@ export default class profileStudent extends Component {
                 </div>
               ))}
             </div>
-
-{/*
-            <div class='col-2'>
-              <p><b>Teachers</b></p>
-
-              <div class='row d-flex l-block-cont'>
-                <div class='col-5'>
-                  <img src={little_fifi} alt='' />
-                </div>
-                <div class='col-7'>
-                  <h6>Fidel Caicedo</h6>
-                  <div class='d-flex justify-content-around'>
-                    <img src={correct} alt='' />
-                    <img src={close} alt='' />
-                  </div>
-                </div>
-              </div>
-
-              <div class='row d-flex l-block-cont'>
-                <div class='col-5'>
-                  <img src={little_fifi} alt='' />
-                </div>
-                <div class='col-7'>
-                  <h6>Fidel Caicedo</h6>
-                  <div class='d-flex justify-content-around'>
-                    <img src={correct} alt='' />
-                    <img src={close} alt='' />
-                  </div>
-                </div>
-              </div>
-
-              <div class='row d-flex l-block-cont'>
-                <div class='col-5'>
-                  <img src={little_fifi} alt='' />
-                </div>
-                <div class='col-7'>
-                  <h6>Fidel Caicedo</h6>
-                  <div class='d-flex justify-content-around'>
-                    <img src={correct} alt='' />
-                    <img src={close} alt='' />
-                  </div>
-                </div>
-              </div>
-
-              <div class='row d-flex l-block-cont'>
-                <div class='col-5'>
-                  <img src={little_fifi} alt='' />
-                </div>
-                <div class='col-7'>
-                  <h6>Fidel Caicedo</h6>
-                  <div class='d-flex justify-content-around'>
-                    <img src={correct} alt='' />
-                    <img src={close} alt='' />
-                  </div>
-                </div>
-              </div>
-
-              <div class='row d-flex l-block-cont'>
-                <div class='col-5'>
-                  <img src={little_fifi} alt='' />
-                </div>
-                <div class='col-7'>
-                  <h6>Fidel Caicedo</h6>
-                  <div class='d-flex justify-content-around'>
-                    <img src={correct} alt='' />
-                    <img src={close} alt='' />
-                  </div>
-                </div>
-              </div>
-            </div>
-*/}
           </div>
         </div>
       </div>

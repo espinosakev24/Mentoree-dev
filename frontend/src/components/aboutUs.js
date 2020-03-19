@@ -8,7 +8,7 @@ import Kevin from '../static/images/Kevin.svg';
 import github from '../static/images/github.svg'
 import linkedin from '../static/images/linkedin.svg'
 import twitter from '../static/images/twitter.svg'
-
+/** Returns a Loaded Component with the information of the makers of the WebPage**/
 export default class AboutUs extends Component {
   render () {
     return (

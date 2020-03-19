@@ -28,7 +28,8 @@ export default class LoginTeacher extends Component {
       return true;
     }
   }
-
+  /** Prevents the creation of two instances where the login information is stored, making
+   * react state the true one. */
   onSubmit (e) {
     e.preventDefault();
 
@@ -36,23 +37,23 @@ export default class LoginTeacher extends Component {
       email: this.state.email,
       password: this.state.password
     };
-
+    /**  Validates the user in the database.**/
     const isValid = this.validate();
     if (isValid) {
       loginTeacher(teacher).then(res => {
         if (res !== 200) { this.setState({ errors: "Incorrect email or password" }) }
         else {
-          console.log('[Component] - Teacher logged in succesfully!');
           this.props.history.push('\lobby');
         }
       })
       .catch(e => {
-        console.log('[Component] - An error has ocurred while logging in a teacher...');
+        /*console.log('[Component] - An error has ocurred while logging in a teacher...');*/
       });
     }
   }
 
   render () {
+    /** Returns the loaded Component of a logged-in User.**/
     return (
       <div class='container pl-10 pr-10 mt-5 d-flex flex-column align-items-center justify-content-start'>
         <Header />

@@ -12,14 +12,14 @@ import book from '../static/images/book.svg';
 import HeaderLogged from './headerLogged';
 import axios from 'axios';
 import '../static/css/modal.css'
-
+/** Loads the Student that you can suscribe to give class**/
 class Student extends Component {
 
   state = {
     firstName: '',
     lastName: ''
   }
-
+/**  Loads Student Information **/
   componentDidMount(){
     const url = `/api/students/${this.props.si}`;
     axios.get(url).then(response => {
@@ -29,6 +29,7 @@ class Student extends Component {
   }
   
   render(){
+    /** Loads the NAme of the students **/
     return (
       <p>Posted by: {this.state.firstName} {this.state.lastName}</p>
     );
@@ -96,6 +97,7 @@ export default class profileTeacher extends Component {
     return(newDate);
   }
   render () {
+    /** Returns the Loaded Component of the Teacher profile with the clases **/
     return (
       <div>
       <HeaderLogged />

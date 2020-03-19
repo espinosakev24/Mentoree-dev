@@ -31,7 +31,7 @@ export default class PostClass extends Component {
   onChange (e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
+/** Validates that all information is stored is given, else it will return error **/
   validate = () => {
     if (!this.state.title ||
       !this.state.description ||
@@ -66,17 +66,18 @@ export default class PostClass extends Component {
     if (isValid) {
       postClass(post).then(res => {
         //window.open('/lobby', '_self');
-        console.log('[Component] - Post created succesfully!');
+        /*console.log('[Component] - Post created succesfully!');*/
         this.props.history.push('\lobby');
       })
       .catch(e => {
-        console.log('[Component] - An error has ocurred while creating a post...');
+       /* console.log('[Component] - An error has ocurred while creating a post...');*/
       });
     }
   }
 
 
   render () {
+    /** Returns the Component that is used to visualize the POST class**/
     return (
       <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
         <HeaderLogged />
@@ -227,14 +228,3 @@ export default class PostClass extends Component {
       </div>
     )}
 }
-/*window.onload = function() {
-  const urlPosts = 'http://localhost:4000/api/posts';
-  const urlStudents = 'http://localhost:4000/api/students';
-  $.getJSON(urlPosts, function (data) {
-    let index = data.result[0].student_id;
-    console.log(index);
-  })
-  $.getJSON(urlStudents, function (data){
-    console.log(data.result[index].first_name)
-  });
-}*/

@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+/** Loads the register information of the user*/
 export const registerStudent = newStudent => {
   return axios
     .post('api/students/register', {
@@ -20,7 +20,7 @@ export const registerStudent = newStudent => {
       console.log(err);
     });
 };
-
+/** Sends the information to the api to validate and create a token**/
 export const loginStudent = student => {
   return axios
     .post('api/students/login', {

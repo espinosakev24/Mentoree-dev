@@ -7,7 +7,7 @@ import dollar from '../static/images/dollar-symbol.svg';
 import user from '../static/images/user.svg';
 import pin from '../static/images/pin.svg';
 
-
+/** Returns all the lobby information */
 let cont = 0;
 var categoriesclicked = [];
 class Owner extends Component {
@@ -20,7 +20,7 @@ class Owner extends Component {
     axios.get(url).then(response => {
       this.setState({firstName: response.data.result[cont].first_name,
       lastName: response.data.result[cont].last_name});
-      console.log(response.data.result[cont].first_name);
+      /*console.log(response.data.result[cont].first_name);*/
     });
   }
   
@@ -37,7 +37,7 @@ export default class Lobby extends Component {
     fullName: ''
   }
 
-
+/** Calls the api to get all post information **/
   componentDidMount() {
     const url = '/api/posts/';
     if (localStorage.teacherToken) {
@@ -50,13 +50,13 @@ export default class Lobby extends Component {
     })
   }
 
-
+/**  If a teacher clicks subscribe this function is called**/
   postTeacherRequest = (pst_id, tch_id) => {
     axios.put(`/api/posts/${pst_id}`, {
       teacher_id: tch_id
     })
     .then(response => {
-      console.log("Teacher suscribed!")
+      /*console.log("Teacher suscribed!")*/
     })
   }
 
@@ -65,7 +65,7 @@ export default class Lobby extends Component {
       teacher_id: null
     })
     .then(response => {
-      console.log("Teacher unsuscribed!")
+      /*console.log("Teacher unsuscribed!")*/
     })
   }
 
@@ -79,7 +79,7 @@ export default class Lobby extends Component {
     newDate = `${day}/${tempDate[1]}/${tempDate[0]} `
     return(newDate);
   }
-
+/** Depending of what the user clicks, filter the information **/
   filterCategories = (ob) => {
     let filtered = [];
     if (typeof(ob) != "undefined") {
@@ -88,8 +88,8 @@ export default class Lobby extends Component {
         if (element[0].className.split(' ')[1] === 'clicked'){
           element[0].classList.remove('clicked');
           for(let n = 0; n < categoriesclicked.length; n++) {
-            console.log(categoriesclicked[n]);
-            console.log(ob);
+            /*console.log(categoriesclicked[n]);
+            console.log(ob);*/
             if(categoriesclicked[n] === ob.split(' ')[0]) {
               categoriesclicked.splice(n, 1);
             }
@@ -119,6 +119,7 @@ export default class Lobby extends Component {
 
 
   render () {
+    /** Returns the Loaded Component of the Lobby**/
     const isStudent = (
       <div class='container pl-10 pr-0 mt-5' id="postclass-cont">
         <HeaderLogged />
