@@ -89,9 +89,6 @@
 #bt {
     z-index: 100;
 }
-.suscribe:after {
-    content: "d!";
-}
 .nosuscribe {
     border: none;
     background-color: white;

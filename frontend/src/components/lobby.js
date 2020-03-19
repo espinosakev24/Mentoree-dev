@@ -11,7 +11,6 @@ import pin from '../static/images/pin.svg';
 let cont = 0;
 var categoriesclicked = [];
 class Owner extends Component {
-
   state = {
     firstName: '',
     lastName: ''
@@ -86,7 +85,7 @@ export default class Lobby extends Component {
     if (typeof(ob) != "undefined") {
       var element = document.getElementsByClassName(ob);
       if (element) {
-        if (element[0].className.split(' ')[1] == 'clicked'){
+        if (element[0].className.split(' ')[1] === 'clicked'){
           element[0].classList.remove('clicked');
           for(let n = 0; n < categoriesclicked.length; n++) {
             console.log(categoriesclicked[n]);
@@ -183,11 +182,14 @@ export default class Lobby extends Component {
               <div><img src={pin} alt='' /> {post.location}</div>
             </div>
             <div className="d-flex justify-content-center">
-              { post.teacher_id ? (post.teacher_id === this.state.teacher_id ? 
-              <button id="bt" class="unsuscribe boton" onClick={this.unpostTeacherRequest.bind(this, post.post_id)}>
+              { post.teacher_id ? (post.teacher_id === this.state.teacher_id ?
+              <button id="bt" class="unsuscribe boton suscribe" onClick={this.unpostTeacherRequest.bind(this, post.post_id)}>
                 Cancel postulation
-              </button> : `This class has been already taken!`) : 
-              <button id="bt" class="suscribe boton" onClick={this.postTeacherRequest.bind(this, post.post_id, this.state.teacher_id)}>
+              </button> : <div className="mt-3 text-center text-secondary w-100">
+                <b className="">This class has been <br />already taken</b>
+                <hr />
+                </div> ) :
+              <button id="bt" class="nosuscribe boton" onClick={this.postTeacherRequest.bind(this, post.post_id, this.state.teacher_id)}>
                 Postule
               </button> }
             </div>
