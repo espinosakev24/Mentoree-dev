@@ -1,88 +1,125 @@
 # mentoree
-Our goal is to connect students in need of accessible, flexible and quality education, with passionate teachers, searching for a modern and innovative way to share knowledge.
 <img align="center" src="https://i.imgur.com/sZZWGFn.png" width="100%"/>
+Our goal is to connect students in need of accessible, flexible and quality education, with passionate teachers, searching for a modern and innovative way to share knowledge.
+
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+
 ### Prerequisites
 
-What things you need to install the software and how to install them
+To run mentoree on dev mode, you must have:
+- npm
+- NodeJs
+- ReactJs 
+- MySQL
 
+To install npm
 ```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
+$sudo npm install npm@latest -g
 ```
 
-And repeat
-
+To install NodeJs
 ```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+$curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+$sudo apt-get install -y nodejs
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
+To install ReactJs
 ```
-Give an example
+$npx create-react-app </mentoree-dev/frontend> mentoree 
 ```
+
+To install MySQL
+```
+$echo 'deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7-dmr' | sudo tee -a /etc/apt/sources.list
+$sudo apt-get update
+$sudo apt-get install mysql-server
+```
+
+### Installing modules
+
+Modules contain most of the faculties mentoree dev uses.
+
+To install node_modules for the backend
+```
+$cd /backend/
+$npm install
+```
+
+To install node_modules for the frontend
+```
+$cd /frontend/
+$npm install
+```
+
+### Setting up the database
+
+Mentoree dev uses relational tables for data storage and consuming.
+
+To setup database credentials
+```
+$cd /backend/database/
+$cat db_setup.sql | mysql -h localhost -u root -p
+```
+
+To create tables, relations and registers
+```
+$cd /backend/database/
+$cat data-[lastest date].sql | mysql -u mentoree_dev -p
+```
+
+### Running the project
+
+The backend and the frontend must be initialized.
+
+To run de backend
+```
+$cd /backend/
+$npm run dev
+```
+
+to run de frontend
+```
+$cd /frontend/
+$npm start
+```
+
+Shortly, a browser tab will pop-out with the poject ready to use!
+
 
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
 
+
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [NodeJs](https://nodejs.org/es/) - Backend environment execution.
+* [ExpressJs](https://expressjs.com/es/) - Backend framework.
+* [ReactJS](https://es.reactjs.org/) - Javascript library for frontend.
+* [Bootstrap](https://getbootstrap.com/) - Frontend framework.
+* [AWS](https://aws.amazon.com/) - Cloud platform dor deployement.
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+
+## Authors
+
+* **Fidel Caicedo** - *Dev-Ops engineer* - [RelaxForever](https://github.com/Relaxforever)
+
+* **Kevin Espinosa** - *Front-end engineer* - [espinosakev24](https://github.com/espinosakev24)
+
+* **Camilo Villegas** - *Full-stack engineer* - [mrdoomus](https://github.com/mrdoomus)
+
+
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
+* Holberton School students
 * Inspiration
-* etc
-
