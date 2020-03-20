@@ -1,0 +1,95 @@
+.pre-modal-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.full-profile {
+    color: white;
+    border: none;
+    background-color: #2F80ED;
+    padding: .2rem 1rem;
+    border-radius: 2rem;
+}
+#modal {
+    margin-left: 50%;
+    transform: translateX(-55%);
+    height: 25rem;
+    width: 32rem;
+    margin-top: 5% !important;
+    justify-content: center;
+    align-items: center;
+}
+#modal > p {
+    text-align: center;
+    color: black;
+}
+#modal > p:nth-child(1)::before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Full name: \A';
+    white-space: pre-wrap;
+
+}
+#modal > p:nth-child(3):before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Number:\A';
+    white-space: pre-wrap;
+}
+#modal > p:nth-child(5):before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Location:\A';
+    white-space: pre-wrap;
+}
+#modal > p:nth-child(7):before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Age:\A';
+    white-space: pre-wrap;
+}
+#modal > p:nth-child(9):before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Email:\A';
+    white-space: pre-wrap;
+}
+#modal > p:nth-child(11):before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Education:\A';
+    white-space: pre-wrap;
+}
+#modal > p:nth-child(13):before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Biography:\A';
+    white-space: pre-wrap;
+}
+#modal > p:nth-child(15):before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Fields:\A';
+    white-space: pre-wrap;
+}
+#modal > p:nth-child(17):before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Methodology:\A';
+    white-space: pre-wrap;
+}
+#modal > p:nth-child(19):before {
+    color: #2F80ED;;
+    font-weight: bold;
+    content: 'Reviews:\A';
+    white-space: pre-wrap;
+}
+#modal > button {
+    color: white;
+    border: none;
+    background-color: #EB5757;
+    padding: .5rem;
+    border-radius: 1rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}

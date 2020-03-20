@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { registerStudent } from './registerLogin';
 import Header from './header';
-
+/** This component handles all the register student handles information**/
 export default class RegisterStudent extends Component {
   constructor () {
     super();
@@ -14,7 +14,7 @@ export default class RegisterStudent extends Component {
       age: '',
       email: '',
       education: '',
-      errors: {}
+      errors: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -23,6 +23,22 @@ export default class RegisterStudent extends Component {
 
   onChange (e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  validate = () => {
+    if (!this.state.first_name ||
+      !this.state.last_name ||
+      !this.state.contact ||
+      !this.state.password ||
+      !this.state.location ||
+      !this.state.age ||
+      !this.state.email ||
+      !this.state.education) {
+      this.setState({ errors: "Please fill every field!" });
+      return false;
+    } else {
+      return true;
+    }
   }
 
   onSubmit (e) {
@@ -38,18 +54,30 @@ export default class RegisterStudent extends Component {
       email: this.state.email,
       education: this.state.education
     };
-
-    registerStudent(student).then(res => {
-      this.props.history.push('\loginStudent');
-    });
+/** Validates that the student is not a copy */
+    const isValid = this.validate();
+    if (isValid) {
+      registerStudent(student).then(res => {
+        if (res !== 200) { this.setState({ errors: "Student already exists" }) }
+        else {
+          /*console.log('[Component] - Student created succesfully!');*/
+          this.props.history.push('\loginStudent');
+        }
+      })
+      .catch(e => {
+        /*console.log('[Component] - An error has ocurred while creating a student...');*/
+      });
   }
+}
 
   render () {
+    /** Returns the loaded component to visualize the student**/
     return (
       <div class='container pl-10 pr-10 mt-5'>
         <Header />
-        <h3><strong>Register</strong></h3> <br />
+        <h3><strong>Register as a Student</strong></h3> <br />
         <form noValidate onSubmit={this.onSubmit} className='' id='main-form'>
+          {this.state.errors ? <div className="alert alert-danger" role="alert">{this.state.errors}</div>: null }
           <div className='row d-flex justify-content-between '>
             <div className='form-group col-6'>
               <label htmlFor='first_name' id='text'>First Name</label>
@@ -57,7 +85,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='first_name'
-                placeholder='Enter first name'
+                placeholder='John'
                 value={this.state.first_name}
                 onChange={this.onChange}
                 id='fields'
@@ -69,7 +97,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='last_name'
-                placeholder='Enter Last name'
+                placeholder='Doe'
                 value={this.state.last_name}
                 onChange={this.onChange}
                 id='fields'
@@ -84,7 +112,7 @@ export default class RegisterStudent extends Component {
                 type='email'
                 className='form-control'
                 name='email'
-                placeholder='Enter Email'
+                placeholder='johndoe@mail.com'
                 value={this.state.email}
                 onChange={this.onChange}
                 id='fields'
@@ -97,7 +125,7 @@ export default class RegisterStudent extends Component {
                 type='password'
                 className='form-control'
                 name='password'
-                placeholder='Enter Password'
+                placeholder='**********'
                 value={this.state.password}
                 onChange={this.onChange}
                 id='fields'
@@ -111,7 +139,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='contact'
-                placeholder='Enter Contact'
+                placeholder='+57 314 245 7896'
                 value={this.state.contact}
                 onChange={this.onChange}
                 id='fields'
@@ -124,7 +152,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='education'
-                placeholder='Enter Education'
+                placeholder='Frontier High School'
                 value={this.state.education}
                 onChange={this.onChange}
                 id='fields'
@@ -139,7 +167,7 @@ export default class RegisterStudent extends Component {
                 type='text'
                 className='form-control'
                 name='location'
-                placeholder='Enter Location'
+                placeholder='USA'
                 value={this.state.location}
                 onChange={this.onChange}
                 id='fields'
@@ -152,7 +180,7 @@ export default class RegisterStudent extends Component {
                 type='number'
                 className='form-control'
                 name='age'
-                placeholder='Enter Age'
+                placeholder='18'
                 value={this.state.age}
                 onChange={this.onChange}
                 id='fields'

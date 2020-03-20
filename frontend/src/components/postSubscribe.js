@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+/** Makes a Post Request so the teacher can suscribe to the class posted by the student.**/
 export const postClass = newPost => {
   return axios
     .post('api/posts/', {
@@ -14,6 +14,6 @@ export const postClass = newPost => {
       location: newPost.location
     })
     .then(res => {
-      console.log('Post created!');
+      /*console.log('[Aux Component] - Post created succesfully!');*/
     });
 };
