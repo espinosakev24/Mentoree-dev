@@ -92,8 +92,26 @@ Shortly, a browser tab will pop-out with the poject ready to use!
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+To begin deployment in AWS follow this tutorial made by AWS.
+https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html
 
+then after having an instance enter to your server with the following information
+```
+ssh -i yourprivatekey.pem ubuntu@amazonserverip
+```
+then inside the server run the following script to set up an environment process found here:
+https://github.com/Relaxforever/Installer_Mentoree/blob/master/installer.sh
+
+Clone the repository and execute the backend as a pm2 instance and make a build of the front-end
+```
+$ git clone https://github.com/espinosakev24/Mentoree-dev.git
+$ cd Mentoree/backend
+$ sudo pm2 start run dev
+$ cd ..
+$ cd Mentoree/frontend
+$ sudo npm run build
+```
+with this the build should be made in the front-end and know you can use any web-server that you want.
 
 ## Built With
 
