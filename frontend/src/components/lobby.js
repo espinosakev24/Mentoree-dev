@@ -56,6 +56,7 @@ export default class Lobby extends Component {
       teacher_id: tch_id
     })
     .then(response => {
+      window.location.reload(true);
       /*console.log("Teacher suscribed!")*/
     })
   }
@@ -65,6 +66,7 @@ export default class Lobby extends Component {
       teacher_id: null
     })
     .then(response => {
+      window.location.reload(true);
       /*console.log("Teacher unsuscribed!")*/
     })
   }

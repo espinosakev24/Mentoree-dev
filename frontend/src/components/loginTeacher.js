@@ -21,7 +21,7 @@ export default class LoginTeacher extends Component {
   }
 
   validate = () => {
-    if (!this.state.email || !this.state.email) {
+    if (!this.state.password || !this.state.email) {
       this.setState({ errors: "Please fill every field!" });
       return false;
     } else {
