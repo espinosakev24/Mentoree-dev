@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { registerTeacher } from './registerLogin';
 import Header from './header';
-
+/** This component handles all the register Teacher handles information**/
 export default class RegisterTeacher extends Component {
   constructor () {
     super();
@@ -16,7 +16,8 @@ export default class RegisterTeacher extends Component {
       education: '',
       biography: '',
       fields: '',
-      methodology: ''
+      methodology: '',
+      errors: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -25,6 +26,25 @@ export default class RegisterTeacher extends Component {
 
   onChange (e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  validate = () => {
+    if (!this.state.first_name ||
+      !this.state.last_name ||
+      !this.state.contact ||
+      !this.state.password ||
+      !this.state.location ||
+      !this.state.age ||
+      !this.state.email ||
+      !this.state.education ||
+      !this.state.biography ||
+      !this.state.fields ||
+      !this.state.methodology) {
+      this.setState({ errors: "Please fill every field!" });
+      return false;
+    } else {
+      return true;
+    }
   }
 
   onSubmit (e) {
@@ -43,27 +63,37 @@ export default class RegisterTeacher extends Component {
       fields: this.state.fields,
       methodology: this.state.methodology
     };
-
-    console.log(teacher);
-
-    registerTeacher(teacher).then(res => {
-      this.props.history.push('\loginTeacher');
-    });
+    /** Validates that the student is not a copy */
+    const isValid = this.validate();
+    if(isValid) {
+      registerTeacher(teacher).then(res => {
+        if (res !== 200) { this.setState({ errors: "Teacher already exists" }) }
+        else {
+          /**console.log('[Component] - Teacher created succesfully!');*/
+          this.props.history.push('\loginTeacher');
+        }
+      })
+      .catch(e => {
+        console.log('[Component] - An error has ocurred while creating a teacher...');
+      });
   }
+}
 
   render () {
+    /** Returns the loaded component to visualize the student**/
     return (
       <div class="container pl-10 pr-10 mt-5">
                 <Header />
-                <h3><strong>Register</strong></h3> <br/>
+                <h3><strong>Register as a teacher</strong></h3> <br/>
                 <form noValidate onSubmit={this.onSubmit} className="" id="main-form">
+                  {this.state.errors ? <div className="alert alert-danger" role="alert">{this.state.errors}</div>: null }
                     <div className="row d-flex justify-content-between ">
                         <div className="form-group col-6">
                             <label htmlFor="first_name" id="text">First Name</label>
                             <input type="text"
                             className="form-control"
                             name="first_name"
-                            placeholder="Enter first name"
+                            placeholder="Sandra"
                             value={this.state.first_name}
                             onChange={this.onChange}
                             id="fields"
@@ -74,7 +104,7 @@ export default class RegisterTeacher extends Component {
                             <input type="text"
                             className="form-control"
                             name="last_name"
-                            placeholder="Enter Last name"
+                            placeholder="Jones"
                             value={this.state.last_name}
                             onChange={this.onChange}
                             id="fields"
@@ -88,7 +118,7 @@ export default class RegisterTeacher extends Component {
                         <input type="email"
                         className="form-control"
                         name="email"
-                        placeholder="Enter Email"
+                        placeholder="sandrajones@mail.com"
                         value={this.state.email}
                         onChange={this.onChange}
                         id="fields"
@@ -100,7 +130,7 @@ export default class RegisterTeacher extends Component {
                         <input type="password"
                         className="form-control"
                         name="password"
-                        placeholder="Enter Password"
+                        placeholder="**********"
                         value={this.state.password}
                         onChange={this.onChange}
                         id="fields"
@@ -113,7 +143,7 @@ export default class RegisterTeacher extends Component {
                         <input type="text"
                         className="form-control"
                         name="contact"
-                        placeholder="Enter Contact"
+                        placeholder="+57 321 456 7890"
                         value={this.state.contact}
                         onChange={this.onChange}
                         id="fields"
@@ -125,7 +155,7 @@ export default class RegisterTeacher extends Component {
                         <input type="text"
                         className="form-control"
                         name="education"
-                        placeholder="Enter Education"
+                        placeholder="Self taught"
                         value={this.state.education}
                         onChange={this.onChange}
                         id="fields"
@@ -139,7 +169,7 @@ export default class RegisterTeacher extends Component {
                         <input type="text"
                         className="form-control"
                         name="location"
-                        placeholder="Enter Location"
+                        placeholder="USA"
                         value={this.state.location}
                         onChange={this.onChange}
                         id="fields"
@@ -151,7 +181,7 @@ export default class RegisterTeacher extends Component {
                         <input type="number"
                         className="form-control"
                         name="age"
-                        placeholder="Enter Age"
+                        placeholder="37"
                         value={this.state.age}
                         onChange={this.onChange}
                         id="fields"
@@ -165,7 +195,7 @@ export default class RegisterTeacher extends Component {
                       type='text'
                       className='form-control'
                       name='methodology'
-                      placeholder='Enter Methodology'
+                      placeholder='Expeditionary Learning'
                       value={this.state.methodology}
                       onChange={this.onChange}
                       id="fields"
@@ -178,7 +208,7 @@ export default class RegisterTeacher extends Component {
                       type='text'
                       className='form-control'
                       name='fields'
-                      placeholder='Enter Fields'
+                      placeholder='Marketing, Business analytics, Sales'
                       value={this.state.fields}
                       onChange={this.onChange}
                       id="fields"
@@ -193,7 +223,8 @@ export default class RegisterTeacher extends Component {
                       type='text'
                       className='form-control'
                       name='biography'
-                      placeholder='Enter Biography'
+                      placeholder='Hi! My name is Sandra Jones, Ive got 10 years of experience working as Business analyst and marketer at top companies like Adidas and Fox. Although I got no diploma on teaching, All my knowledge has been self-taught and I aspire to teach s
+                      you the best way to dive into business!'
                       value={this.state.biography}
                       onChange={this.onChange}
                       id="fields"

@@ -36,15 +36,15 @@ router.route('/register')
                 res.json({ status: student.email + 'registered' });
               })
               .catch(err => {
-                res.send('error: ' + err);
+                res.status(400).json({ error: 'Failed to create Student' });
               });
           });
         } else {
-          res.json({ error: 'User already exists' });
+          res.status(400).json({ error: 'Student already exist' });
         }
       })
       .catch(err => {
-        res.send('error: ' + err);
+        res.status(400).json({ error: 'Internal Student error' });
       });
   });
 
@@ -65,7 +65,7 @@ router.route('/login')
             res.send(token);
           }
         } else {
-          res.status(400).json({ error: 'User does not exist' });
+          res.status(400).json({ error: 'Student does not exist' });
         }
       })
       .catch(err => {
@@ -108,7 +108,12 @@ router.route('/')
 
   // POST request - localhost:4000/api/students/
   .post(async (req, res) => {
-    await pool.query('INSERT INTO students set ?', [req.body]);
+    try {
+      await pool.query('INSERT INTO students set ?', [req.body]);
+      console.log('[API] - Student created succesfully!');
+    } catch (e) {
+      console.log('[API] - An error has ocurred while creating a student...');
+    }
 
     res.json({
       message: 'Student created succesfully!',

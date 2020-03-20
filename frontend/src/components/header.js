@@ -6,6 +6,8 @@ import hamburguermenu from '../static/images/menu.svg';
 
 export default class Header extends Component {
   render () {
+    /** Returns the navigation bar of the website without logged in information*/
+
     return (
       <div className='container mt-sm-0 pl-0 pr-0 mb-3 fixed-top' id='header-fix'>
         <nav className='navbar navbar-expand-md mentoree-img' id='navbar'>
@@ -18,9 +20,6 @@ export default class Header extends Component {
 
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav text-center ml-auto small-phone nav-items'>
-              {/* <li className="nav-item active l-pad p first">
-                  <a href="#" className="nav-link">Take a tour</a>
-                </li> */}
               <Link to='/about'>
                 <li className='nav-item active l-pad p'>
                   <a className='nav-link'>About Us</a>

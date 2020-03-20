@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode';
 
 import Logo from '../static/images/imglogo.svg';
 import hamburguermenu from '../static/images/menu.svg';
+import notification from '../static/images/notification.svg';
 
 export default class HeaderLogged extends Component {
   constructor () {
@@ -13,7 +14,7 @@ export default class HeaderLogged extends Component {
       last_name: ''
     };
   }
-
+  /** Grabs the token of a logged in sessions and then it changes the header of one of the user.*/
   componentDidMount () {
     let token;
     if (localStorage.studentToken) {
@@ -30,19 +31,22 @@ export default class HeaderLogged extends Component {
   }
 
   render () {
+    /** Returns the Header with all user-related information. */
     const isStudent = (
-      <ul className='navbar-nav text-center ml-auto small-phone nav-items'>
-        <li className='nav-item active l-pad p'>
-          <a className='nav-link'>Notifications</a>
+      <ul class='navbar-nav text-center ml-auto small-phone nav-items'>
+        <li class='nav-item active first'>
+          <a href='#' class='nav-link profile-text'>
+            <img src={notification} width='25' height='auto' alt='' />
+          </a>
         </li>
         <Link to='/postClass'>
-          <li className='nav-item active l-pad p'>
-            <a className='nav-link'>+ post a class</a>
+          <li class='nav-item active white'>
+            <a href='about_us.html' class='nav-link post-class profile-text'>+ Post Class</a>
           </li>
         </Link>
         <Link to='/profileStudent'>
-          <li className='nav-item active last p'>
-            <a className='nav-link'>{this.state.first_name + ' ' + this.state.last_name}</a>
+          <li class='nav-item active'>
+            <a href='login.html' class='nav-link profile-text'>{this.state.first_name + ' ' + this.state.last_name}</a>
           </li>
         </Link>
       </ul>
@@ -51,7 +55,9 @@ export default class HeaderLogged extends Component {
     const isTeacher = (
       <ul className='navbar-nav text-center ml-auto small-phone nav-items'>
         <li className='nav-item active l-pad p'>
-          <a className='nav-link'>Notifications</a>
+          <a className='nav-link'>
+            <img src={notification} width='25' height='auto' alt='' />
+          </a>
         </li>
         <Link to='/profileTeacher'>
           <li className='nav-item active last p'>
@@ -65,10 +71,10 @@ export default class HeaderLogged extends Component {
         <nav className='navbar navbar-expand-md mentoree-img' id='navbar'>
           <Link to='/lobby'>
             <a href='#sect1' className='navbar-brand'><img src={Logo} alt='' width='170' height='auto' className='logo' /></a>
-            <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' id='btn-header'>
-              <span className='navbar-toggler-icon' id='hamburguermenu'><img src={hamburguermenu} alt='' width='15' height='auto' /></span>
-            </button>
           </Link>
+          <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' id='btn-header'>
+            <span className='navbar-toggler-icon' id='hamburguermenu'><img src={hamburguermenu} alt='' width='15' height='auto' /></span>
+          </button>
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             {localStorage.studentToken ? isStudent : isTeacher}
           </div>

@@ -1,0 +1,70 @@
+#postclass-cont{
+    color: black;
+}
+.categories {
+    margin: 0;
+    width: 100%;
+}
+.cols-cont {
+    display: flex;
+    justify-content: space-between;
+}
+.upper-text {
+    font-size: .9rem !important;
+    color: rgba(0, 0, 0, 0.5);
+}
+.cols-cont > .cols {
+    display: flex;
+    align-items: center; justify-content: center;
+    font-size: .8rem;
+    text-align: center;
+    border-radius: 1rem;
+    padding: .5rem .3rem;
+    color: white;
+}
+.cols-cont-1 {
+    margin-bottom: 2%;
+}
+/* setting colors in the right component */
+.cols-cont-1 > .cols:nth-child(1) {
+    background-color: #EB5757;
+}
+.cols-cont-1 > .cols:nth-child(2) {
+    background-color: #F2994A;;
+}
+.cols-cont-1 > .cols:nth-child(3) {
+    background-color: #F2C94C;
+}
+.cols-cont-2 > .cols:nth-child(1) {
+    background-color: #27AE60;
+}
+.cols-cont-2 > .cols:nth-child(2) {
+    background-color: #2F80ED;
+}
+.cols-cont-2 > .cols:nth-child(3) {
+    background-color: #9B51E0;
+}
+/* end of color setting*/
+#areas {
+    width: 30%;
+}
+#titlebox {
+    height: 4rem;
+}
+input {
+    background-color: rgba(79, 79, 79, 0.1) !important;
+    border: none !important;
+    border-radius: .5rem !important;
+}
+#textarea {
+    height: 6em;
+    background-color: rgba(79, 79, 79, 0.1);
+    border: none;
+}
+#price {
+    height: 5.45rem;
+}
+#price, #item {
+    width: 100%;
+    text-align: center;
+}

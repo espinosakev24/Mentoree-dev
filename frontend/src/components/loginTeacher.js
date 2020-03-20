@@ -8,7 +8,8 @@ export default class LoginTeacher extends Component {
     super();
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      errors: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -19,6 +20,16 @@ export default class LoginTeacher extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  validate = () => {
+    if (!this.state.password || !this.state.email) {
+      this.setState({ errors: "Please fill every field!" });
+      return false;
+    } else {
+      return true;
+    }
+  }
+  /** Prevents the creation of two instances where the login information is stored, making
+   * react state the true one. */
   onSubmit (e) {
     e.preventDefault();
 
@@ -26,24 +37,35 @@ export default class LoginTeacher extends Component {
       email: this.state.email,
       password: this.state.password
     };
-
-    loginTeacher(teacher).then(res => {
-      this.props.history.push('\lobby');
-    });
+    /**  Validates the user in the database.**/
+    const isValid = this.validate();
+    if (isValid) {
+      loginTeacher(teacher).then(res => {
+        if (res !== 200) { this.setState({ errors: "Incorrect email or password" }) }
+        else {
+          this.props.history.push('\lobby');
+        }
+      })
+      .catch(e => {
+        /*console.log('[Component] - An error has ocurred while logging in a teacher...');*/
+      });
+    }
   }
 
   render () {
+    /** Returns the loaded Component of a logged-in User.**/
     return (
       <div class='container pl-10 pr-10 mt-5 d-flex flex-column align-items-center justify-content-start'>
         <Header />
         <h1><strong>Log In</strong></h1><br />
         <form noValidate onSubmit={this.onSubmit} class='form-control h-100' id='form'>
+          {this.state.errors ? <div className="alert alert-danger" role="alert">{this.state.errors}</div>: null }
           <div class='form-group'>
             <input
               type='email'
               className='form-control'
               name='email'
-              placeholder='Enter Email'
+              placeholder='yourmail@mail.com'
               value={this.state.email}
               onChange={this.onChange}
               id='in'
@@ -54,7 +76,7 @@ export default class LoginTeacher extends Component {
               type='password'
               className='form-control'
               name='password'
-              placeholder='Enter Password'
+              placeholder='**********'
               value={this.state.password}
               onChange={this.onChange}
               id='in'

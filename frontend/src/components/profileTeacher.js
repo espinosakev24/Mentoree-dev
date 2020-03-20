@@ -1,5 +1,40 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
+import profileImg from '../static/images/ph_user.svg';
+import candelar from '../static/images/candelar.svg';
+import equal from '../static/images/equal.svg';
+import dollar from '../static/images/dollar-symbol.svg';
+import user from '../static/images/user.svg';
+import pin from '../static/images/pin.svg';
+import at from '../static/images/at.svg';
+import phone from '../static/images/phone.svg';
+import book from '../static/images/book.svg';
+import HeaderLogged from './headerLogged';
+import axios from 'axios';
+import '../static/css/modal.css'
+/** Loads the Student that you can suscribe to give class**/
+class Student extends Component {
+
+  state = {
+    firstName: '',
+    lastName: ''
+  }
+/**  Loads Student Information **/
+  componentDidMount(){
+    const url = `/api/students/${this.props.si}`;
+    axios.get(url).then(response => {
+      this.setState({firstName: response.data.result[0].first_name,
+      lastName: response.data.result[0].last_name});
+    });
+  }
+  
+  render(){
+    /** Loads the NAme of the students **/
+    return (
+      <p>Posted by: {this.state.firstName} {this.state.lastName}</p>
+    );
+  }
+}
 
 export default class profileTeacher extends Component {
   logOut (e) {
@@ -11,6 +46,7 @@ export default class profileTeacher extends Component {
   constructor () {
     super();
     this.state = {
+      teacher_id: '',
       first_name: '',
       last_name: '',
       contact: '',
@@ -22,90 +58,104 @@ export default class profileTeacher extends Component {
       biography: '',
       fields: '',
       methodology: '',
-      reviews: ''
+      reviews: '',
+      posts: []
     };
   }
 
   componentDidMount () {
     const token = localStorage.teacherToken;
     const decoded = jwt_decode(token);
-    this.setState({
-      first_name: decoded.first_name,
-      last_name: decoded.last_name,
-      contact: decoded.contact,
-      password: decoded.password,
-      location: decoded.location,
-      age: decoded.age,
-      email: decoded.email,
-      education: decoded.education,
-      biography: decoded.biography,
-      fields: decoded.fields,
-      methodology: decoded.methodology,
-      reviews: decoded.reviews
-    });
+    axios.get(`/api/posts/teachers/${decoded.teacher_id}`).then(response => response.data)
+      .then((data) => {
+        this.setState({
+          teacher_id: decoded.teacher_id,
+          first_name: decoded.first_name,
+          last_name: decoded.last_name,
+          contact: decoded.contact,
+          password: decoded.password,
+          location: decoded.location,
+          age: decoded.age,
+          email: decoded.email,
+          education: decoded.education,
+          biography: decoded.biography,
+          fields: decoded.fields,
+          methodology: decoded.methodology,
+          reviews: decoded.reviews,
+          posts: data.result
+        });
+      });
   }
+  changeDateFormat = (date) => {
+    let newDate = '';
+    let tempDate = []
+    let day = ''
 
+    tempDate = date.split('-');
+    day = tempDate[2].split('T')[0];
+    newDate = `${day}/${tempDate[1]}/${tempDate[0]} `
+    return(newDate);
+  }
   render () {
+    /** Returns the Loaded Component of the Teacher profile with the clases **/
     return (
-      <div class='container p-4'>
+      <div>
+      <HeaderLogged />
+      <div class='container pl-10 pr-0 mt-5'>
         <div class='row'>
-          <div class='col-md-4 mx-auto'>
-            <div class='cad text-center'>
-              <div class='card-header'>
-                <h3>Register</h3>
+          <div class='col-3 d-flex flex-column align-items-center l-block'>
+            <img src={profileImg} width='150' alt='' /> <br /><br />
+            <h3><b>{this.state.first_name} {this.state.last_name}</b></h3>
+            <p>{this.state.education}</p>
+            <div class='row d-flex justify-content-center w-100'>
+              <div class='col-6 d-flex p-0 justify-content-between'>
+                <div class='col-6 d-flex p-0'>
+                  <img src={candelar} alt='' />&nbsp;&nbsp;{this.state.age}
+                </div>
+                <div class='col-6 d-flex p-0 pb-3'>
+                  <img src={equal} alt='' />&nbsp;&nbsp;{this.state.location}
+                </div>
               </div>
-              <div class='card-body'>
-                <tr>
-                  <td>First name</td>
-                  <td>{this.state.first_name}</td>
-                </tr>
-                <tr>
-                  <td>Last name</td>
-                  <td>{this.state.last_name}</td>
-                </tr>
-                <tr>
-                  <td>Contact</td>
-                  <td>{this.state.contact}</td>
-                </tr>
-                <tr>
-                  <td>Location</td>
-                  <td>{this.state.location}</td>
-                </tr>
-                <tr>
-                  <td>Age</td>
-                  <td>{this.state.age}</td>
-                </tr>
-                <tr>
-                  <td>Email</td>
-                  <td>{this.state.email}</td>
-                </tr>
-                <tr>
-                  <td>Education</td>
-                  <td>{this.state.education}</td>
-                </tr>
-                <tr>
-                  <td>Biography</td>
-                  <td>{this.state.biography}</td>
-                </tr>
-                <tr>
-                  <td>Fields</td>
-                  <td>{this.state.fields}</td>
-                </tr>
-                <tr>
-                  <td>Methodology</td>
-                  <td>{this.state.methodology}</td>
-                </tr>
-                <tr>
-                  <td>Reviews</td>
-                  <td>{this.state.reviews}</td>
-                </tr>
-                <tr>
-                  <a href='' onClick={this.logOut.bind(this)}>Logout</a>
-                </tr>
+              <br />
+              <div class='d-flex justify-content-center align-itmes-center pb-3'>
+                <img src={at} alt='' />&nbsp;&nbsp;{this.state.email}
               </div>
+              <br />
+              <div className="pb-3">
+                <img src={phone} alt='' /> +57 {this.state.contact}
+              </div> <br />
+              <div>
+                <img src={book} /> {this.state.methodology}
+              </div>
+              <div className="pb-3">
+                <div className='fields-col'>{this.state.fields}</div>
+              </div>
+              <a href='' onClick={this.logOut.bind(this)}>Logout</a>
             </div>
-          </div>
+
         </div>
+          <div class='col-9 c-cont'>
+            <h3 class='not'><b>Your bio</b></h3>
+            <p className="text-dark">{this.state.biography}</p><br />
+            <h3 class='not'>Classes where you have postulated</h3> <br />
+              {this.state.posts.map((post) => (
+                <div class='container p-0 c-post'>
+                  <h3><b>{post.title}</b></h3>
+                  <p>{post.description}</p>
+                  <div class='d-flex justify-content-between p-0 c-menu'>
+                    <p id={post.category}>{post.category}</p> <Student si={post.student_id}/>
+                    <p>{this.changeDateFormat(post.creation_date)}</p>
+                  </div>
+                  <div class='d-flex justify-content-between'>
+                    <div><img src={dollar} alt='' /> {post.price}/h</div>
+                    <div><img src={user} alt='' /> {post.size}</div>
+                    <div><img src={pin} alt='' /> {post.location}</div>
+                  </div>
+                </div>
+              ))};
+          </div>
+      </div>
+      </div>
       </div>
     );
   }

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default class preLogin extends Component {
   render () {
+    /** Returns a React Component that handles the pre-login staged of the user **/
     return (
       <div>
         <Header />
